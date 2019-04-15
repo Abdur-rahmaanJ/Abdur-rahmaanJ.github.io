@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Not And Or and Xor gate - Refining the Azimuth</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="/articles/2019/04/15/not-and-or-and-xor-gate/">
+
+        <meta name="author" content="Abdur-Rahmaan Janhangeer" />
+        <meta name="keywords" content="gates,assembly-lang" />
+        <meta name="description" content="On binary and electricity binary means of two states. electricity can flow or not. current can be on or off. current on represents true. current off represents false. or current on represents 1 and current off represents 0. it could have been apple and pears The Transistor as foundation a …" />
+
+        <meta property="og:site_name" content="Refining the Azimuth" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Not And Or and Xor gate"/>
+        <meta property="og:url" content="/articles/2019/04/15/not-and-or-and-xor-gate/"/>
+        <meta property="og:description" content="On binary and electricity binary means of two states. electricity can flow or not. current can be on or off. current on represents true. current off represents false. or current on represents 1 and current off represents 0. it could have been apple and pears The Transistor as foundation a …"/>
+        <meta property="article:published_time" content="2019-04-15" />
+            <meta property="article:section" content="blogging" />
+            <meta property="article:tag" content="gates" />
+            <meta property="article:tag" content="assembly-lang" />
+            <meta property="article:author" content="Abdur-Rahmaan Janhangeer" />
+
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="/theme/css/bootstrap.flatly.min.css" type="text/css"/>
+    <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments/monokai.css" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">
+Refining the Azimuth            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="/pages/about-me/">
+                             About Me
+                          </a></li>
+                         <li><a href="/pages/logofolio/">
+                             Logofolio
+                          </a></li>
+                        <li class="active">
+                            <a href="/category/blogging">Blogging</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<!-- Banner -->
+<!-- End Banner -->
+
+<!-- Content Container -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="/articles/2019/04/15/not-and-or-and-xor-gate/"
+                       rel="bookmark"
+                       title="Permalink to Not And Or and Xor gate">
+                        Not And Or and Xor gate
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2019-04-15T21:00:00+04:00"> lun. 15 avril 2019</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="/tag/gates">gates</a>
+        /
+	<a href="/tag/assembly-lang">assembly-lang</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <h2>On binary and electricity</h2>
+<p>binary means of two states. electricity can flow or not. current can be on or off. current on represents true. current off represents false. or current on represents 1 and current off represents 0. it could have been apple and pears</p>
+<h2>The Transistor as foundation</h2>
+<p>a transistor is an electronic component. it acts as switch. but the difference is that it is controlled by electricity. so, it can be switched on and off quickly</p>
+<div class="highlight"><pre><span></span>    ----- metal piece
+●——-      |——-●
+    -/-/-/  here acts as magnet
+</pre></div>
+
+
+<p>if you did physics, you might remember that magnetic fields are formed around any wire carrying current and coiling the wires acts as a magnet so when current is applied, the magnet is activated, attracting the metal piece, closing the switch, and current flows from the two ends ● ●
+summary : a transistor is used as a switch
+—</p>
+<p>Logic gates logic gates form the foundation of computers, a gate is no wizardry. just arrangement of switches</p>
+<p>the 3 basic gates are : AND OR and NOT gates</p>
+<h2>AND gate</h2>
+<p>an AND gate checks if both conditions are true for outputting true just like if x==4 and y==2 do …. it is constructed by placing 2 transistors in series</p>
+<div class="highlight"><pre><span></span>     1             2
+     a●———-●__●———●b
+      |           |
+</pre></div>
+
+
+<p>current will only flow from a to b if transistor / switch 1 and switch 2 is closed</p>
+<h2>OR gate</h2>
+<p>an or gate gives out true if one condition is true it is constructed by using 2 transistors in parallel</p>
+<div class="highlight"><pre><span></span>       | 1 
+    ●————-●
+   a|     |b
+    ●————-● 
+       | 2
+</pre></div>
+
+
+<p>transistor 1 and 2 </p>
+<p>if both open -&gt; current flows </p>
+<p>if one open one close -&gt; current flows </p>
+<p>if both closed -&gt; no current</p>
+<h2>NOT gate</h2>
+<p>a not gate just outputs the opposite of the input</p>
+<div class="highlight"><pre><span></span>    output
+       |
+       |
+current ——●————–●—–ground
+                | input
+</pre></div>
+
+
+<p>when input is on / current flows, it opens the switch and current flows to ground i.e if input 1 -&gt; no output and so 0 </p>
+<p>if no input so the switch is closed, and current deviates to output input 0 output 1 such is the NOT gate</p>
+<h2>XOR gate</h2>
+<p>a xor gate is as follows where a and b are inputs</p>
+<div class="highlight"><pre><span></span>a  b  output
+1  1    0
+1  0    1
+0  1    1
+0  0    0
+</pre></div>
+
+
+<p>it is constructed as follows</p>
+<p><img alt="py love" src="/img/xor1.jpg"></p>
+<p>testing the first case of 1 1</p>
+<p><img alt="py love" src="/img/xor2.jpg"></p>
+<p>see a XOR gate is nice !</p>
+<p>try as an exercise the other inputs</p>
+<p>the symbol of a XOR gate is</p>
+<p><img alt="py love" src="/img/xor2.jpg"></p>
+<p>besides these gates, there are more !</p>
+<h2>On the naming of gates</h2>
+<p>they are called gates as they control current flow just like real gates control crowd flow</p>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<!-- Sidebar -->
+<section class="well well-sm">
+  <ul class="list-group list-group-flush">
+
+<!-- Sidebar/Social -->
+<li class="list-group-item">
+  <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+  <ul class="list-group" id="social">
+    <li class="list-group-item"><a href="https://github.com/Abdur-RahmaanJ"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+    <li class="list-group-item"><a href="https://linkedin.com/in/appinv"><i class="fa fa-linkedin-square fa-lg"></i> linkedIn</a></li>
+  </ul>
+</li>
+<!-- End Sidebar/Social -->
+
+<!-- Sidebar/Links -->
+<li class="list-group-item">
+  <h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+  <ul class="list-group" id="links">
+    <li class="list-group-item">
+      <a href="http://getpelican.com/" target="_blank">Pelican</a>
+    </li>
+    <li class="list-group-item">
+      <a href="http://python.org/" target="_blank">Python.org</a>
+    </li>
+    <li class="list-group-item">
+      <a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a>
+    </li>
+  </ul>
+</li>
+<!-- End Sidebar/Links -->
+  </ul>
+</section>
+<!-- End Sidebar -->            </aside>
+        </div>
+    </div>
+</div>
+<!-- End Content Container -->
+
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2019 Abdur-Rahmaan Janhangeer
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="/theme/js/respond.min.js"></script>
+
+
+
+
+</body>
+</html>
