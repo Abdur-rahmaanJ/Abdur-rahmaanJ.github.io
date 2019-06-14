@@ -29,7 +29,7 @@
 
 
     <!-- Bootstrap -->
-        <link rel="stylesheet" href="/theme/css/bootstrap.flatly.min.css" type="text/css"/>
+        <link rel="stylesheet" href="/theme/css/bootstrap.superhero.min.css" type="text/css"/>
     <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="/theme/css/pygments/monokai.css" rel="stylesheet">
@@ -95,7 +95,7 @@ Refining the Azimuth            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2019-04-15T21:00:00+04:00"> lun. 15 avril 2019</time>
+        <i class="fa fa-calendar"></i><time datetime="2019-04-15T21:00:00+04:00"> Mon 15 April 2019</time>
     </span>
 
 
@@ -113,9 +113,9 @@ Refining the Azimuth            </a>
 <p>binary means of two states. electricity can flow or not. current can be on or off. current on represents true. current off represents false. or current on represents 1 and current off represents 0. it could have been apple and pears</p>
 <h2>The Transistor as foundation</h2>
 <p>a transistor is an electronic component. it acts as switch. but the difference is that it is controlled by electricity. so, it can be switched on and off quickly</p>
-<div class="highlight"><pre><span></span>    ----- metal piece
-●——-      |——-●
-    -/-/-/  here acts as magnet
+<div class="highlight"><pre><span></span>    <span class="c1">----- metal piece</span>
+<span class="err">●——</span><span class="o">-</span>      <span class="o">|</span><span class="err">——</span><span class="o">-</span><span class="err">●</span>
+    <span class="o">-/-/-/</span>  <span class="n">here</span> <span class="n">acts</span> <span class="k">as</span> <span class="n">magnet</span>
 </pre></div>
 
 
@@ -126,20 +126,20 @@ summary : a transistor is used as a switch
 <p>the 3 basic gates are : AND OR and NOT gates</p>
 <h2>AND gate</h2>
 <p>an AND gate checks if both conditions are true for outputting true just like if x==4 and y==2 do …. it is constructed by placing 2 transistors in series</p>
-<div class="highlight"><pre><span></span>     1             2
-     a●———-●__●———●b
-      |           |
+<div class="highlight"><pre><span></span>     <span class="mi">1</span>             <span class="mi">2</span>
+     <span class="n">a</span><span class="err">●———</span><span class="o">-</span><span class="err">●</span><span class="n">__</span><span class="err">●———●</span><span class="n">b</span>
+      <span class="o">|</span>           <span class="o">|</span>
 </pre></div>
 
 
 <p>current will only flow from a to b if transistor / switch 1 and switch 2 is closed</p>
 <h2>OR gate</h2>
 <p>an or gate gives out true if one condition is true it is constructed by using 2 transistors in parallel</p>
-<div class="highlight"><pre><span></span>       | 1 
-    ●————-●
-   a|     |b
-    ●————-● 
-       | 2
+<div class="highlight"><pre><span></span>       <span class="o">|</span> <span class="mi">1</span> 
+    <span class="err">●————</span><span class="o">-</span><span class="err">●</span>
+   <span class="n">a</span><span class="o">|</span>     <span class="o">|</span><span class="n">b</span>
+    <span class="err">●————</span><span class="o">-</span><span class="err">●</span> 
+       <span class="o">|</span> <span class="mi">2</span>
 </pre></div>
 
 
@@ -149,11 +149,11 @@ summary : a transistor is used as a switch
 <p>if both closed -&gt; no current</p>
 <h2>NOT gate</h2>
 <p>a not gate just outputs the opposite of the input</p>
-<div class="highlight"><pre><span></span>    output
-       |
-       |
-current ——●————–●—–ground
-                | input
+<div class="highlight"><pre><span></span>    <span class="k">output</span>
+       <span class="o">|</span>
+       <span class="o">|</span>
+<span class="k">current</span> <span class="err">——●————–●—–</span><span class="n">ground</span>
+                <span class="o">|</span> <span class="k">input</span>
 </pre></div>
 
 
@@ -161,11 +161,11 @@ current ——●————–●—–ground
 <p>if no input so the switch is closed, and current deviates to output input 0 output 1 such is the NOT gate</p>
 <h2>XOR gate</h2>
 <p>a xor gate is as follows where a and b are inputs</p>
-<div class="highlight"><pre><span></span>a  b  output
-1  1    0
-1  0    1
-0  1    1
-0  0    0
+<div class="highlight"><pre><span></span><span class="n">a</span>  <span class="n">b</span>  <span class="k">output</span>
+<span class="mi">1</span>  <span class="mi">1</span>    <span class="mi">0</span>
+<span class="mi">1</span>  <span class="mi">0</span>    <span class="mi">1</span>
+<span class="mi">0</span>  <span class="mi">1</span>    <span class="mi">1</span>
+<span class="mi">0</span>  <span class="mi">0</span>    <span class="mi">0</span>
 </pre></div>
 
 
