@@ -34,6 +34,7 @@
 
     <link href="/theme/css/pygments/monokai.css" rel="stylesheet">
     <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
+        <link href="/theme/css/custom.css" rel="stylesheet">
 
 
 
@@ -113,9 +114,9 @@ Refining the Azimuth            </a>
 <p>binary means of two states. electricity can flow or not. current can be on or off. current on represents true. current off represents false. or current on represents 1 and current off represents 0. it could have been apple and pears</p>
 <h2>The Transistor as foundation</h2>
 <p>a transistor is an electronic component. it acts as switch. but the difference is that it is controlled by electricity. so, it can be switched on and off quickly</p>
-<div class="highlight"><pre><span></span>    <span class="c1">----- metal piece</span>
-<span class="err">●——</span><span class="o">-</span>      <span class="o">|</span><span class="err">——</span><span class="o">-</span><span class="err">●</span>
-    <span class="o">-/-/-/</span>  <span class="n">here</span> <span class="n">acts</span> <span class="k">as</span> <span class="n">magnet</span>
+<div class="highlight"><pre><span></span><span class="err">    ----- metal piece</span>
+<span class="err">●——-      |——-●</span>
+<span class="err">    -/-/-/  here acts as magnet</span>
 </pre></div>
 
 
@@ -126,20 +127,20 @@ summary : a transistor is used as a switch
 <p>the 3 basic gates are : AND OR and NOT gates</p>
 <h2>AND gate</h2>
 <p>an AND gate checks if both conditions are true for outputting true just like if x==4 and y==2 do …. it is constructed by placing 2 transistors in series</p>
-<div class="highlight"><pre><span></span>     <span class="mi">1</span>             <span class="mi">2</span>
-     <span class="n">a</span><span class="err">●———</span><span class="o">-</span><span class="err">●</span><span class="n">__</span><span class="err">●———●</span><span class="n">b</span>
-      <span class="o">|</span>           <span class="o">|</span>
+<div class="highlight"><pre><span></span><span class="err">     1             2</span>
+<span class="err">     a●———-●__●———●b</span>
+<span class="err">      |           |</span>
 </pre></div>
 
 
 <p>current will only flow from a to b if transistor / switch 1 and switch 2 is closed</p>
 <h2>OR gate</h2>
 <p>an or gate gives out true if one condition is true it is constructed by using 2 transistors in parallel</p>
-<div class="highlight"><pre><span></span>       <span class="o">|</span> <span class="mi">1</span> 
-    <span class="err">●————</span><span class="o">-</span><span class="err">●</span>
-   <span class="n">a</span><span class="o">|</span>     <span class="o">|</span><span class="n">b</span>
-    <span class="err">●————</span><span class="o">-</span><span class="err">●</span> 
-       <span class="o">|</span> <span class="mi">2</span>
+<div class="highlight"><pre><span></span><span class="err">       | 1 </span>
+<span class="err">    ●————-●</span>
+<span class="err">   a|     |b</span>
+<span class="err">    ●————-● </span>
+<span class="err">       | 2</span>
 </pre></div>
 
 
@@ -149,11 +150,11 @@ summary : a transistor is used as a switch
 <p>if both closed -&gt; no current</p>
 <h2>NOT gate</h2>
 <p>a not gate just outputs the opposite of the input</p>
-<div class="highlight"><pre><span></span>    <span class="k">output</span>
-       <span class="o">|</span>
-       <span class="o">|</span>
-<span class="k">current</span> <span class="err">——●————–●—–</span><span class="n">ground</span>
-                <span class="o">|</span> <span class="k">input</span>
+<div class="highlight"><pre><span></span><span class="err">    output</span>
+<span class="err">       |</span>
+<span class="err">       |</span>
+<span class="err">current ——●————–●—–ground</span>
+<span class="err">                | input</span>
 </pre></div>
 
 
@@ -161,11 +162,11 @@ summary : a transistor is used as a switch
 <p>if no input so the switch is closed, and current deviates to output input 0 output 1 such is the NOT gate</p>
 <h2>XOR gate</h2>
 <p>a xor gate is as follows where a and b are inputs</p>
-<div class="highlight"><pre><span></span><span class="n">a</span>  <span class="n">b</span>  <span class="k">output</span>
-<span class="mi">1</span>  <span class="mi">1</span>    <span class="mi">0</span>
-<span class="mi">1</span>  <span class="mi">0</span>    <span class="mi">1</span>
-<span class="mi">0</span>  <span class="mi">1</span>    <span class="mi">1</span>
-<span class="mi">0</span>  <span class="mi">0</span>    <span class="mi">0</span>
+<div class="highlight"><pre><span></span><span class="err">a  b  output</span>
+<span class="err">1  1    0</span>
+<span class="err">1  0    1</span>
+<span class="err">0  1    1</span>
+<span class="err">0  0    0</span>
 </pre></div>
 
 
@@ -198,6 +199,7 @@ summary : a transistor is used as a switch
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://github.com/Abdur-RahmaanJ"><i class="fa fa-github-square fa-lg"></i> github</a></li>
     <li class="list-group-item"><a href="https://linkedin.com/in/appinv"><i class="fa fa-linkedin-square fa-lg"></i> linkedIn</a></li>
+    <li class="list-group-item"><a href="https://twitter.com/osdotsystem"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->
@@ -230,10 +232,8 @@ summary : a transistor is used as a switch
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2019 Abdur-Rahmaan Janhangeer
-            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
-            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
-            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-10">&copy; 2020 Abdur-Rahmaan Janhangeer
+            &middot; Powered by Python's Pelican         </div>
          <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
       </div>
    </div>
