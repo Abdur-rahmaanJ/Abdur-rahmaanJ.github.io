@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Using Python Function As Classes - Refining the Azimuth</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="/articles/2019/02/15/using-python-function-as-classes/">
+
+        <meta name="author" content="Abdur-Rahmaan Janhangeer" />
+        <meta name="keywords" content="python,function,oop" />
+        <meta name="description" content="In Python, you can use functions as classes. In py, everything is an object. How? I&#39;m no py expert. Here&#39;s how we do it! An Innocent Python Function a function is like that def devdotto(): pass and a class is like that: class Car: def __init__(self): self.wheel = 4 …" />
+
+        <meta property="og:site_name" content="Refining the Azimuth" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Using Python Function As Classes"/>
+        <meta property="og:url" content="/articles/2019/02/15/using-python-function-as-classes/"/>
+        <meta property="og:description" content="In Python, you can use functions as classes. In py, everything is an object. How? I&#39;m no py expert. Here&#39;s how we do it! An Innocent Python Function a function is like that def devdotto(): pass and a class is like that: class Car: def __init__(self): self.wheel = 4 …"/>
+        <meta property="article:published_time" content="2019-02-15" />
+            <meta property="article:section" content="blogging" />
+            <meta property="article:tag" content="python" />
+            <meta property="article:tag" content="function" />
+            <meta property="article:tag" content="oop" />
+            <meta property="article:author" content="Abdur-Rahmaan Janhangeer" />
+
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="/theme/css/bootstrap.superhero.min.css" type="text/css"/>
+    <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments/monokai.css" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
+        <link href="/theme/css/custom.css" rel="stylesheet">
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">
+Refining the Azimuth            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="/pages/about-me/">
+                             About Me
+                          </a></li>
+                         <li><a href="/pages/logofolio/">
+                             Logofolio
+                          </a></li>
+                        <li class="active">
+                            <a href="/category/blogging">Blogging</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<!-- Banner -->
+<!-- End Banner -->
+
+<!-- Content Container -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="/articles/2019/02/15/using-python-function-as-classes/"
+                       rel="bookmark"
+                       title="Permalink to Using Python Function As Classes">
+                        Using Python Function As Classes
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2019-02-15T09:00:00+04:00"> Fri 15 February 2019</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="/tag/python">python</a>
+        /
+	<a href="/tag/function">function</a>
+        /
+	<a href="/tag/oop">oop</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>In Python, you can use functions as classes. In py, everything is an object. How? I'm no py expert. Here's how we do it!</p>
+<h2>An Innocent Python Function</h2>
+<p>a function is like that</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">devdotto</span><span class="p">():</span>
+    <span class="k">pass</span>
+</pre></div>
+
+
+<p>and a class is like that:</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Car</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wheel</span> <span class="o">=</span> <span class="mi">4</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">make</span> <span class="o">=</span> <span class="s1">&#39;BWM&#39;</span> <span class="c1"># i know</span>
+
+    <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;moving&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>more info:</p>
+<p><img alt="alt text" src="https://thepracticaldev.s3.amazonaws.com/i/va7qakwzwhwzy2oi975w.png"></p>
+<p>make and wheels are attributes
+while move is a method</p>
+<p>some tests</p>
+<div class="highlight"><pre><span></span><span class="n">car</span> <span class="o">=</span> <span class="n">Car</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">car</span><span class="o">.</span><span class="n">wheel</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">car</span><span class="o">.</span><span class="n">make</span><span class="p">)</span>
+
+<span class="n">car</span><span class="o">.</span><span class="n">move</span><span class="p">()</span>
+</pre></div>
+
+
+<p>gives out</p>
+<div class="highlight"><pre><span></span><span class="mi">4</span>
+<span class="n">BWM</span>
+<span class="n">moving</span>
+</pre></div>
+
+
+<h2>Now Let Us Add Attributes</h2>
+<p>adding attributes to functions</p>
+<div class="highlight"><pre><span></span><span class="n">devdotto</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;dev.to&#39;</span>
+<span class="n">devdotto</span><span class="o">.</span><span class="n">users</span> <span class="o">=</span> <span class="mi">1123234</span>
+</pre></div>
+
+
+<p>testing</p>
+<div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">devdotto</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">devdotto</span><span class="o">.</span><span class="n">users</span><span class="p">)</span>
+</pre></div>
+
+
+<p>gives out</p>
+<div class="highlight"><pre><span></span><span class="n">dev</span><span class="o">.</span><span class="n">to</span>
+<span class="mi">1123234</span>
+</pre></div>
+
+
+<h2>More Craziness: Adding Methods To Functions</h2>
+<p>adding an add method:</p>
+<div class="highlight"><pre><span></span><span class="n">devdotto</span><span class="o">.</span><span class="n">add</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span>
+</pre></div>
+
+
+<p>some info:</p>
+<p><img alt="alt text" src="https://thepracticaldev.s3.amazonaws.com/i/fh92725hznxskdu19qow.png"></p>
+<p>testing</p>
+<div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">devdotto</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+
+
+<p>gives out</p>
+<div class="highlight"><pre><span></span><span class="mi">3</span>
+</pre></div>
+
+
+<h2>Conclusion</h2>
+<p>Since some one liner libs make use of IEF (Immediately Executed Functions) using lambdas to compile even loops, these can be useful, but i can't think of any use cases (for using functions as classes), this said, this is one of py's party tricks, hence the cover image.</p>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<!-- Sidebar -->
+<section class="well well-sm">
+  <ul class="list-group list-group-flush">
+
+<!-- Sidebar/Social -->
+<li class="list-group-item">
+  <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+  <ul class="list-group" id="social">
+    <li class="list-group-item"><a href="https://github.com/Abdur-RahmaanJ"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+    <li class="list-group-item"><a href="https://linkedin.com/in/appinv"><i class="fa fa-linkedin-square fa-lg"></i> linkedIn</a></li>
+    <li class="list-group-item"><a href="https://twitter.com/osdotsystem"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+  </ul>
+</li>
+<!-- End Sidebar/Social -->
+
+<!-- Sidebar/Links -->
+<li class="list-group-item">
+  <h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+  <ul class="list-group" id="links">
+    <li class="list-group-item">
+      <a href="http://getpelican.com/" target="_blank">Pelican</a>
+    </li>
+    <li class="list-group-item">
+      <a href="http://python.org/" target="_blank">Python.org</a>
+    </li>
+    <li class="list-group-item">
+      <a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a>
+    </li>
+  </ul>
+</li>
+<!-- End Sidebar/Links -->
+  </ul>
+</section>
+<!-- End Sidebar -->            </aside>
+        </div>
+    </div>
+</div>
+<!-- End Content Container -->
+
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2020 Abdur-Rahmaan Janhangeer
+            &middot; Powered by Python's Pelican         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="/theme/js/respond.min.js"></script>
+
+
+
+
+</body>
+</html>

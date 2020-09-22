@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>The Zen of Python: As Related By Masters - Refining the Azimuth</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="/articles/2020/09/17/zen-of-python-as-related-by-masters/">
+
+        <meta name="author" content="Abdur-Rahmaan Janhangeer" />
+        <meta name="keywords" content="Python,zen" />
+        <meta name="description" content="The Zen of Python saw light for the first time in 1999. It&#39;s one of the many aspects that adds to the awesomeness of Python. It&#39;s a set of expressions which corners the spirit of the language. It was enounced by Tim Peters, a reputable software engineer, master Pythonista and …" />
+
+        <meta property="og:site_name" content="Refining the Azimuth" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="The Zen of Python: As Related By Masters"/>
+        <meta property="og:url" content="/articles/2020/09/17/zen-of-python-as-related-by-masters/"/>
+        <meta property="og:description" content="The Zen of Python saw light for the first time in 1999. It&#39;s one of the many aspects that adds to the awesomeness of Python. It&#39;s a set of expressions which corners the spirit of the language. It was enounced by Tim Peters, a reputable software engineer, master Pythonista and …"/>
+        <meta property="article:published_time" content="2020-09-17" />
+            <meta property="article:section" content="blogging" />
+            <meta property="article:tag" content="Python" />
+            <meta property="article:tag" content="zen" />
+            <meta property="article:author" content="Abdur-Rahmaan Janhangeer" />
+
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="/theme/css/bootstrap.superhero.min.css" type="text/css"/>
+    <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments/monokai.css" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
+        <link href="/theme/css/custom.css" rel="stylesheet">
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">
+Refining the Azimuth            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="/pages/about-me/">
+                             About Me
+                          </a></li>
+                         <li><a href="/pages/logofolio/">
+                             Logofolio
+                          </a></li>
+                        <li class="active">
+                            <a href="/category/blogging">Blogging</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<!-- Banner -->
+<!-- End Banner -->
+
+<!-- Content Container -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="/articles/2020/09/17/zen-of-python-as-related-by-masters/"
+                       rel="bookmark"
+                       title="Permalink to The Zen of Python: As Related By Masters">
+                        The Zen of Python: As Related By Masters
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2020-09-17T09:00:00+04:00"> Thu 17 September 2020</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="/tag/python">Python</a>
+        /
+	<a href="/tag/zen">zen</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p><img alt="" src="https://images.unsplash.com/photo-1598545343242-89b4c263a343?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=750&amp;q=80"></p>
+<p>The Zen of Python saw light for the first time in 1999. It's one of the many aspects that adds to the awesomeness of Python. It's a set of expressions which corners the spirit of the language. It was enounced by Tim Peters, a reputable software engineer, master Pythonista and Python's 'most prolific and tenacious core developer' in the words of none other than Guido [18]. This article bases itself mostly on the saying of core devs and highly reputable members. It makes a great gift to all those interested in the history of the sysadmin script which took the world by (pleasent) surprise.</p>
+<h1>Birth of the Path</h1>
+<p>The way the Zen came about was unique. It was a reflection from the unknown Patrick Phalen about the Python feel [1]:</p>
+<blockquote>
+<p>... the more I use
+and learn about the language, the more I find myself appreciating the
+nice balance and heft Guido gave to it. Yet there doesn't seem to be a
+single document that sums up that "aesthetic," but rather it
+tends to appear piecemeal, over time, mostly in the Wisdom of Chairman Tim.</p>
+</blockquote>
+<p>It was a call to infuse the Python spirit into aliens from Perl Land and beyond. It requested some 10 to 20 lines which sums up the Python view</p>
+<blockquote>
+<p>Would both Guido and TIm Peters be willing to collaborate on a short
+paper -- call it "The Python Way" for lack of a better title -- which
+sets out the 10-20 prescriptives they might offer to those who come to
+Python from other languages and immediately want to find a way to bend
+it into uncomfortable positions -- (implement closures, etc.).</p>
+</blockquote>
+<p>It was a request to prevent Pythonistas from falling into the error of campaigning for changing the language. It advocated for imbuing yourself with the language's flow and change your ways and views instead of the other way round. In the original mail, it quoted Fredrik Lundh as saying "sure looks like the 'community' thinks that changing the
+language is more important that using it..." [5]. Patrick clarifies:</p>
+<blockquote>
+<p>What I have in mind is sort of a very brief Strunk-&amp;-White-like
+"Elements of Style" for Python, which suggests fundamental idiomatic
+recommendations for operating within the spirit of the language. A
+distillation of Python Zen is what I'm talking about -- something to go
+off and contemplate when the "fix Python now" decibels become a bit
+much.</p>
+</blockquote>
+<p><img alt="" src="https://images.unsplash.com/photo-1555573989-14a9017746c3?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=749&amp;q=80"></p>
+<h1>Zen, Strunk and White</h1>
+<p>The Zen school lays out hints and guidelines. You understand by your own exercise and by the company of someone seasoned in the craft</p>
+<blockquote>
+<p>it de-emphasizes mere knowledge of sutras and doctrine and favors direct understanding through spiritual practice and interaction with an accomplished teacher or Master.[2]</p>
+</blockquote>
+<p>The Zen was a request to help Python people achieve the Python state of mind so that your code resonates well with the structure behind, conveying in the process the associated beauty, elegance and finesse. Those guidelines if well impregnated would make your code revered whithin the circle of true monks.</p>
+<p>But, curiously enough, Tim tells [19]:</p>
+<blockquote>
+<p>If I were to change anything, I'd drop the reference to "Zen".  That wasn't
+part of the original, and was added by someone else. </p>
+</blockquote>
+<p>In other words, the title is not from the author [23]</p>
+<p>Strunk &amp; White is the name of two people, viz William Strunk and Elwyn Brooks White. Strunk wrote <em>The Elements of Style</em>, acclaimed by the Times as one of the most influencial books since 1923 [3]. White who was Strunk's student and reviser after the professor's death describes the book as:</p>
+<blockquote>
+<p>a forty-three page summation of the case
+for cleanliness, accuracy, and brevity in the use of English [4]</p>
+</blockquote>
+<p>The effect of the book is described below, he being Strunk:</p>
+<blockquote>
+<p>he omitted so
+many needless words, and omitted them so forcibly and with such eagerness and obvious
+relish, that he often seemed in the position of having shortchanged himself — a man left
+with nothing more to say yet with time to fill, a radio prophet who had out-distanced the
+clock. Will Strunk got out of this predicament by a simple trick: he uttered every sentence
+three times</p>
+</blockquote>
+<p>One effect of applying the Zen would then also be lighter code files.</p>
+<p><img alt="" src="https://images.unsplash.com/photo-1484108678824-e6543e2e4230?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=752&amp;q=80"></p>
+<h1>The Master Showers his Blessings</h1>
+<p>Master Tim heard the plea, approved the demand and responded accordingly [6]</p>
+<blockquote>
+<p>Clearly a job for Guido alone -- although I doubt it's one he'll take on
+(fwiw, I wish he would too!).  Here's the outline he would start from,
+though <wink>:</p>
+</blockquote>
+<div class="highlight"><pre><span></span><span class="n">Beautiful</span> <span class="ow">is</span> <span class="n">better</span> <span class="n">than</span> <span class="n">ugly</span><span class="p">.</span>
+<span class="n">Explicit</span> <span class="ow">is</span> <span class="n">better</span> <span class="n">than</span> <span class="n">implicit</span><span class="p">.</span>
+<span class="n">Simple</span> <span class="ow">is</span> <span class="n">better</span> <span class="n">than</span> <span class="n">complex</span><span class="p">.</span>
+<span class="n">Complex</span> <span class="ow">is</span> <span class="n">better</span> <span class="n">than</span> <span class="n">complicated</span><span class="p">.</span>
+<span class="n">Flat</span> <span class="ow">is</span> <span class="n">better</span> <span class="n">than</span> <span class="n">nested</span><span class="p">.</span>
+<span class="n">Sparse</span> <span class="ow">is</span> <span class="n">better</span> <span class="n">than</span> <span class="n">dense</span><span class="p">.</span>
+<span class="n">Readability</span> <span class="n">counts</span><span class="p">.</span>
+<span class="n">Special</span> <span class="n">cases</span> <span class="n">aren</span><span class="c">&#39;t special enough to break the rules.</span>
+<span class="n">Although</span> <span class="n">practicality</span> <span class="n">beats</span> <span class="n">purity</span><span class="p">.</span>
+<span class="n">Errors</span> <span class="n">should</span> <span class="n">never</span> <span class="n">pass</span> <span class="n">silently</span><span class="p">.</span>
+<span class="n">Unless</span> <span class="n">explicitly</span> <span class="n">silenced</span><span class="p">.</span>
+<span class="ow">In</span> <span class="n">the</span> <span class="n">face</span> <span class="k">of</span> <span class="n">ambiguity</span><span class="p">,</span> <span class="n">refuse</span> <span class="n">the</span> <span class="n">temptation</span> <span class="k">to</span> <span class="n">guess</span><span class="p">.</span>
+<span class="n">There</span> <span class="n">should</span> <span class="n">be</span> <span class="n">one</span><span class="o">--</span> <span class="ow">and</span> <span class="n">preferably</span> <span class="n">only</span> <span class="n">one</span> <span class="o">--</span><span class="n">obvious</span> <span class="n">way</span> <span class="k">to</span> <span class="k">do</span> <span class="n">it</span><span class="p">.</span>
+<span class="n">Although</span> <span class="n">that</span> <span class="n">way</span> <span class="n">may</span> <span class="k">not</span> <span class="n">be</span> <span class="n">obvious</span> <span class="n">at</span> <span class="n">first</span> <span class="n">unless</span> <span class="n">you</span><span class="c">&#39;re Dutch.</span>
+<span class="n">Now</span> <span class="ow">is</span> <span class="n">better</span> <span class="n">than</span> <span class="n">never</span><span class="p">.</span>
+<span class="n">Although</span> <span class="n">never</span> <span class="ow">is</span> <span class="n">often</span> <span class="n">better</span> <span class="n">than</span> <span class="o">*</span><span class="n">right</span><span class="o">*</span> <span class="n">now</span><span class="p">.</span>
+<span class="k">If</span> <span class="n">the</span> <span class="n">implementation</span> <span class="ow">is</span> <span class="n">hard</span> <span class="k">to</span> <span class="n">explain</span><span class="p">,</span> <span class="n">it</span><span class="c">&#39;s a bad idea.</span>
+<span class="k">If</span> <span class="n">the</span> <span class="n">implementation</span> <span class="ow">is</span> <span class="n">easy</span> <span class="k">to</span> <span class="n">explain</span><span class="p">,</span> <span class="n">it</span> <span class="n">may</span> <span class="n">be</span> <span class="n">a</span> <span class="n">good</span> <span class="n">idea</span><span class="p">.</span>
+<span class="n">Namespaces</span> <span class="n">are</span> <span class="n">one</span> <span class="n">honking</span> <span class="n">great</span> <span class="n">idea</span> <span class="o">--</span> <span class="k">let</span><span class="c">&#39;s do more of those!</span>
+</pre></div>
+
+
+<p>The 20th was left for Guido to fill in:</p>
+<blockquote>
+<p>There you go:  20 Pythonic Fec^H^H^HTheses on the nose, counting the one I'm
+leaving for Guido to fill in.</p>
+</blockquote>
+<p>Venerable Tim shares exactly how the lines came about [15]:</p>
+<blockquote>
+<p>It was a throwaway python-list post. But like all great triumphs of literature, it was written during commercials breaks while watching professional wrestling on TV, and munching on a ham sandwich. All true!</p>
+</blockquote>
+<p>Yet, the author is emphatical: It's complete and more than meets the demand [6]:</p>
+<blockquote>
+<p>If the answer to <em>any</em> Python design issue
+isn't obvious after reading those -- well, I just give up <wink>.</p>
+</blockquote>
+<p>The above also reveals the purpose of the Zen: To address design issues. And it's not a simple matter. Guido says [18]: </p>
+<blockquote>
+<p>In many ways, the design philosophy I used when creating Python is probably one of the main reasons for its ultimate success.</p>
+</blockquote>
+<p>The Zen only gives the outlines, in contrast to Strunk and White which gives explanations and examples in addition. Thus the need for commentaries. These help the non-initiated without being a replacement for the company of the bright minds.</p>
+<p>In a time of fluctuating and steered standards, the reference in the actual PEP8 document to Strunk and White in the usage of the English language caused a bitter, ugly and messy thread [7]. It caused some of the best people of the community to forego following  python-list [8], a casual reminder that being too open without limit hurts.</p>
+<p><img alt="" src="https://images.unsplash.com/photo-1593297372323-2ba78409d0b1?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=750&amp;q=80"></p>
+<h1>Reality of the Zen</h1>
+<p>The Zen has become an important piece of the Python programming language. If you don't know the Zen, you won't strike the right chord to communicate with the community. Raymond Hettinger advises:</p>
+<blockquote>
+<p>Before creating more tracker items, please take time to learn about how Python's history, how it is used, and its cultural norms.  In particular, read the Zen of Python, consider what is meant by duck-typing, what is meant by "a consenting adults language", what is meant by over-specification, etc.  Python is quite different from Java in this regard. [13]</p>
+</blockquote>
+<p>There's also a practical aspect to it. It's popular because it works [14]. It's the golden guiding principle in pretty much everything Python.</p>
+<p>Finally are the Zen points rules? What are they really. Many people take the Zen for rules. The 'most opinionated linter ever' at one time actually included the Zen to back their views [9]. It was situations like these which prompted me to write: The Zen Of Python Is A Joke And Here Is Why [10]. It was nice enough for Michael Kennedy and Brian Okken to call it a 'must read' on PythonBytes [11]. </p>
+<p>According to Nick Coghlan, the Zen gives you the idea, not everything [12]:</p>
+<blockquote>
+<p>This
+challenge is reflected in the fact that the Zen of Python is
+deliberately self-contradictory, as it articulates competing design
+principles to take into consideration, rather than being able to
+provide ironclad rules that avoid the need for human judgement in
+determining which of those design guidelines are most salient in any
+given situation.</p>
+</blockquote>
+<p>Self contradiction is also coincidentally, one of the criticised aspect of Strunk and White [17].
+The Zen also goes beyond coding, such as shaping the thought pattern of features [12]:</p>
+<blockquote>
+<p>The thing we work toward as core developers, and aspiring core
+developers, is good design intuition that aligns with the Zen of
+Python. That doesn't mean we're all going to be able to perfectly
+articulate that intuition in every case, and even when we can, those
+explanations are themselves generally going to be backed by intuition
+rather than rigorous scientific research.</p>
+</blockquote>
+<p>If ever i myself would have added a 20th one it would have been: "Use your judgement.". But Nick illustrated it better.</p>
+<p>As for the famous <code>import this</code> command, it was Barry Warsaw's pick. He sneaked it in a this.py in 2001 along with the ROT13 obfuscation [16]. He also mentionned that it was a time 'when the Python community had a sense of humor'.</p>
+<p><img alt="" src="https://images.unsplash.com/photo-1561739091-9d698cb277ec?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=750&amp;q=80"></p>
+<h1>Commentary</h1>
+<p>Now the time is ripe to see what the Zen actually means. But before we should know that whatever the words
+and concepts mean in the Zen is not necessarily applicable elsewhere [20].</p>
+<h3>Beautiful is better than ugly.</h3>
+<p>Beautiful and ugly in this context has nothing to do with human appearance.  It's in the same general sense as in other technical fields: there's beautiful &amp; ugly physics, beautiful &amp; ugly mathematics, beautiful &amp; ugly computer code [19]. Beauty in design is very similar to beauty in flora. For it refers to a general feeling of consistency, pureness and standing out on its own. It's abstract and doesn't have anything to do with humans [20]. This line can be replaced by 'Elegant is better than inelegant.' to understand it better [21]. The 'beauty' line is one of multiple contrasts, and should be judged in  that context, not in isolation [22]. At heart, Python's design emerged from Guido's sense of beauty [23]</p>
+<h3>Explicit is better than implicit.</h3>
+<blockquote>
+<p>The Zen of Python points out that "explicit is better than implicit" for a reason: ambiguity and implicit knowledge that is not easily communicated code is easy to get wrong and leads to bugs. By forcing developers to explicitly separate out their binary data and textual data it leads to better code that has less of a chance to have a certain class of bug. </p>
+</blockquote>
+<p>Brett Cannon [25]</p>
+<blockquote>
+<p>It's been interesting seeing how ppl interpret "explicit is better than implicit" to say specifying 'object' is good. For me, syntactically leaving out a base class <strong>is</strong> explicit, not as <em>verbose</em>, and is more visually identifiable </p>
+</blockquote>
+<p>Brett Cannon [26]</p>
+<blockquote>
+<p>Implicit package directories go against the Zen of Python</p>
+<p>Getting this one out of the way first. As I see it, implicit package
+directories violate at least 4 of the design principles in the Zen:
+- Explicit is better than implicit (my calling them implicit package
+directories is a deliberate rhetorical ploy to harp on this point,
+although it's also an accurate name)
+- If the implementation is hard to explain, it's a bad idea (see the
+section about backwards compatibility challenges)
+- Readability counts (see the section about introducing ambiguity into
+filesystem layouts)
+- Errors should never pass silently (see the section about implicit
+relative imports from main)</p>
+</blockquote>
+<p>Nick Coghlan [24]:</p>
+<h3>Simple is better than complex.</h3>
+<blockquote>
+<p>Currently, when I teach sets, I take pleasure in the near-zero learning curve
+and absence of special cases.  Set code becomes a prime example of
+"readability counts" and "simple is better than complex."  More importantly,
+I think there is value in API simplicity for lists, sets, and dicts, our basic tools.
+The ABCs for sets currently reflect that simplicity and it would be sad if that
+started to get lost in order to save one line here or there.</p>
+</blockquote>
+<p>Raymond Hettinger [39]</p>
+<h3>Complex is better than complicated.</h3>
+<p>oxfordlearnersdictionaries.com gives both complex and complicated as synonyms with meaning:
+"made of many different things or parts that are connected; difficult to understand"</p>
+<p>dictionary.cambridge.org gives complex as: "having many parts connected in ways that are difficult to understand" and complicated as: "confusing or difficult to understand"</p>
+<p>macmillandictionary.com defines complex as: "something that is complex has a lot of details or small parts that make it difficult to understand or deal with" and complicated as: "difficult to do, deal with, or understand, especially because of involving a lot of different processes or aspects" and 2. "made up of many different but connected parts"</p>
+<p>merriam-webster.com gives complex as: a whole made up of complicated or interrelated parts and composed of two or more parts, complicated as: consisting of parts intricately combined and difficult to analyze, understand, or explain</p>
+<p>We can translate the line to mean:</p>
+<blockquote>
+<p>A solution which is made up of different interconnected parts is better than one which is difficult to analyze, understand, or explain</p>
+</blockquote>
+<p>or</p>
+<blockquote>
+<p>A complex solution is better than a more complex one</p>
+</blockquote>
+<p>or </p>
+<blockquote>
+<p>A solution which is made up of different interconnected parts is better than one which has many parts but is difficult to analyze, understand, or explain</p>
+</blockquote>
+<h3>Flat is better than nested.</h3>
+<p>Nesting constructs like conditionals or functions or classes or modules one inside the other too much is frowned upon. The x.y.z.q.w.w example is given as the author of the lib nested too many modules one inside the other, given a tiring usage experience</p>
+<h3>Sparse is better than dense.</h3>
+<blockquote>
+<p>When I channeled "sparse is better than dense" as one of Guido's
+fundamental design principles, I was as mystified as anyone else.  Indeed,
+my first thought was "what the hell is that supposed to mean?!".  But, as a
+professional channeler, I was duty-bound to pass it on as it was revealed,
+neither adding nor removing jot nor tittle.</p>
+<p>In the years since, I've come to see that it has many meanings, some of
+which I explained yesterday.  I'm learning from other thoughtful posts (such
+as yours) that I still have a long way to go in mining its full depth.  Or
+in realizing its full shallowness, depending on how you view it <wink>.</p>
+<p>&lt;&lt; Or maybe his attention is just elsewhere... but I'd like to think that
+this is a Zen koan.&gt;&gt;</p>
+<p>Oh no.  Koans are far more advanced, in the nature of using a stick to stir
+up a fire that consumes the stick in its quest to illuminate its own nature.
+The channeled 20 Pythonic Theses (their original name -- "The Zen of Python"
+was tacked on by somebody else, whom I suspect was not really a Zen master)
+are more about using sticks to build a strong platform, as if sticks were
+real and strong platforms were worthy of building.  It takes a stronger
+channeler than me to dismiss that as illusion.  The end of Pythonic
+Enlightenment is pleasure in achieving fine code; it's not enough to get you
+Nirvana, presumably because it's still full of sticks <wink>.</p>
+<p>&lt;<Unlike most of the other people in this thread, I always thought of
+sparse v. dense as a syntactic/semantic issue.>&gt;</p>
+<p>That's definitely part of it.  The openness of Python's visual appearance,
+the ubiquitous use of dicts, and the carefully chosen handful of control
+structures were the first things I thought of.</p>
+<p>&lt;&lt;...
+I'm probably reading more into this little statement than is there.&gt;&gt;</p>
+<p>I don't believe that's possible.  Try harder <wink>.</p>
+</blockquote>
+<p>Tim Peters [40]</p>
+<h3>Readability counts.</h3>
+<blockquote>
+<p>There's that word "readability" again. Sometimes I wish the Zen of
+Python didn't use it, because everyone seems to think that "readable"
+means "code I like".
+</p>
+</blockquote>
+<p>Chris Angelico [34]</p>
+<p>The motto of Python is clarity. The language attempts to be as readable as the english language. Guido says [18]:</p>
+<blockquote>
+<p>I’d like to mention one readability rule specifically: punctuation characters should be used conservatively, in line with their common use in written English or high-school algebra. </p>
+</blockquote>
+<h3>Special cases aren't special enough to break the rules.</h3>
+<h3>Although practicality beats purity.</h3>
+<blockquote>
+<p>if you're going from 8-bit strings to unicode using implicit con-
+version, the current design can give you:</p>
+<div class="highlight"><pre><span></span><span class="err">&quot;UnicodeError: UTF-8 decoding error: unexpected code byte&quot;</span>
+</pre></div>
+
+
+<p>if you go from unicode to 8-bit strings, you'll never get an error.</p>
+<p>however, the result is not always a string -- if the unicode string
+happened to contain any characters larger than 127, the result
+is a binary buffer containing encoded data.  you cannot use string
+methods on it, you cannot use regular expressions on it.  indexing
+and slicing won't work.</p>
+<div class="highlight"><pre><span></span><span class="err">unlike earlier versions of Python, and unlike unicode-aware</span>
+<span class="err">versions of Tcl and Perl, the fundamental assumption that</span>
+<span class="err">a string is a sequence of characters no longer holds. =20</span>
+</pre></div>
+
+
+<p>in my proposal, going from 8-bit strings to unicode always works.
+a character is a character, no matter what string type you're using.</p>
+<p>however, going from unicode to an 8-bit string may given you an
+OverflowError, say:</p>
+<div class="highlight"><pre><span></span><span class="err">&quot;OverflowError: unicode character too large to fit in a byte&quot;</span>
+</pre></div>
+
+
+<p>the important thing here is that if you don't get an exception, the
+result is <em>always</em> a string.  string methods always work.  etc.</p>
+<p>[8. Special cases aren't special enough to break the rules.]</p>
+</blockquote>
+<p>Fredrik Lundh [42]</p>
+<blockquote>
+<p>First, I think the PyCharm case is compelling enough on its own.  I 
+realized after I sent it that there's a related class of tools that are 
+interested: PyFlakes, PyLint, and the like.  I'm sure the static 
+correctness analyzers would like to be able to automatically determine 
+"this is an illegal number of parameters for this function" for 
+builtins--particularly for third-party builtins!  The fact that we 
+wouldn't need to special-case pydoc suggests it's the superior 
+approach.  ("Special cases aren't special enough to break the rules.")</p>
+</blockquote>
+<p>Larry Hastings [41]</p>
+<h3>Errors should never pass silently.</h3>
+<h3>Unless explicitly silenced.</h3>
+<blockquote>
+<p>Thus, in Python 2.3, we abandoned my home-grown 2.2 MRO algorithm in favor of the academically vetted C3 algorithm. One outcome of this is that Python will now reject any inheritance hierarchy that has an inconsistent ordering of base classes. For instance, in the previous example, there is an ordering conflict between class X and Y. For class X, there is a rule that says class A should be checked before class B. However, for class Y, the rule says that class B should be checked before A. In isolation, this discrepancy is fine, but if X and Y are ever combined together in the same inheritance hierarchy for another class (such as in the definition of class Z), that class will be rejected by the C3 algorithm. This, of course, matches the Zen of Python's "errors should never pass silently" rule. 
+</p>
+</blockquote>
+<p>Guido [33]</p>
+<blockquote>
+<p>This is of course a backwards-incompatible change to logging semantics: instead
+of saying that logging will be silent unless explicitly asked to produce output,
+we're saying that logging will always produce output for warnings and errors (or
+perhaps just errors), unless explicitly silenced. This is of course in line with
+the Zen of Python; the present behaviour, which is not so aligned, is based on
+the idea that logging should not affect program behaviour if it's not wanted by
+the program developer (as opposed to library developer).</p>
+<p>It would also mean changing the documentation about NullHandler to say: "If you
+have messages which must get out when you can't raise an exception, then don't
+add a NullHandler to your top-level loggers." </p>
+</blockquote>
+<p>Vinay Sajip [28]</p>
+<blockquote>
+<p>You might prefer to get an exception for "missing keys"that would help alert you to a bug in your
+program, in cases in which you know all ks in somekeys should definitely also be keys in
+somedict. Remember, "errors should never pass silently. Unless explicitly silenced," to quote The
+Zen of Python --Python Cookbook</p>
+</blockquote>
+<h3>In the face of ambiguity, refuse the temptation to guess.</h3>
+<blockquote>
+<p>Well, the Zen of Python states "In the face of ambiguity, refuse the temptation 
+to guess". So that's the policy the builtin dict follows - it doesn't try to guess when to 
+make a copy, or whether or not to use identity based semantics in the face of 
+mutability. Instead, it raises an exception at key entry time, asking the 
+programmer to clarify their intent. 
+</p>
+</blockquote>
+<p>Nick Coghlan [37]</p>
+<blockquote>
+<p>On the issue of {a.b.c}: like several correspondents, I don't like the
+ambiguity of attribute vs. key refs much, even though it appears
+useful enough in practice in web frameworks I've used. It seems to
+violate the Zen of Python: "In the face of ambiguity, refuse the
+temptation to guess."</p>
+<p>Unfortunately I'm pretty lukewarm about the proposal to support
+{a[b].c} since b is not a variable reference but a literal string 'b'.
+It is also relatively cumbersome to parse. I wish I could propose
+{a+b.c} for this case but that's so arbitrary...
+</p>
+</blockquote>
+<p>Guido [31]</p>
+<blockquote>
+<p>By now, you can probably imagine why Python refuses to guess among the hundreds of possible
+encodings. It's a crucial design choice, based on one of the Zen of Python principles: "In the face
+of ambiguity, resist the temptation to guess." --Python Cookbook</p>
+</blockquote>
+<h3>There should be one-- and preferably only one --obvious way to do it.</h3>
+<blockquote>
+<p>But remember TOOWTDI from the Zen of Python.</p>
+</blockquote>
+<p>Guido [32]</p>
+<blockquote>
+<p>The Zen of Python says that "there should be one -- and preferably only one -- obvious way to do it". Having literals in the language that could represent either textual data or binary data was a problem.
+</p>
+</blockquote>
+<p>Brett Cannon [25]</p>
+<blockquote>
+<p>When Python evolves, new ways emerge inevitably. DeprecationWarning
+are emitted to suggest to use the new way, but many developers ignore
+these warnings which are silent by default.
+</p>
+</blockquote>
+<p>Victor Stinner [35]</p>
+<blockquote>
+<p>String formatting is one of those things that defy the
+Zen of Python, that there should only be one obvious way to do things.
+</p>
+</blockquote>
+<p>Mariatta Wijaya [36]</p>
+<p>It should be noted that the dashes here don't play a role as it's Tim's way of emphasis. And it is to be noted that Brett missed it on his blog. He was maybe writing from memory.</p>
+<h3>Although that way may not be obvious at first unless you're Dutch.</h3>
+<blockquote>
+<p>In context, "Dutch" means a person from the Netherlands, or one imbued with
+Dutch culture (begging forgiveness for that abuse of the word).   I would
+have said French, except that every French person I asked "how do you make a
+shallow copy of a list?" failed to answer: alist[:]
+so I guess that's not obvious to them.  It must be obvious to the Dutch,
+though, since it's obvious to Guido van Rossum (Python's creator, who is
+Dutch), and a persistent rumor maintains that everyone who posts to
+comp.lang.python is in fact also Dutch.  The French people I asked about
+copying a list weren't Python users, which is even more proof (as if it
+needed more).</p>
+<p>Or, in other words, "obvious" is in part a learned, cultural judgment.
+There's really nothing universally obvious about any computer language,
+deluded proponents notwithstanding.  Nevertheless, most of Python is obvious
+to the Dutch.  Others sometimes have to work a bit at <em>learning</em> the one
+obvious way in Python, just as they have to work a bit at learning to
+appreciate tulips, and Woody Woodpecker impersonations.</p>
+</blockquote>
+<p>Tim Peters [38]</p>
+<h3>Now is better than never.</h3>
+<h3>Although never is often better than <em>right</em> now.</h3>
+<blockquote>
+<p>There are also cases where we'll decide "it seems plausible that this
+might be a good idea, so let's try it out and see what happens in
+practice rather than continuing to speculate" - only ever doing things
+that you're already 100% certain are a good idea is a recipe for
+stagnation and decline (hence the "Now is better than never" line in
+the Zen).
+</p>
+</blockquote>
+<p>Nick Coghlan [27]</p>
+<h3>If the implementation is hard to explain, it's a bad idea.</h3>
+<h3>If the implementation is easy to explain, it may be a good idea.</h3>
+<blockquote>
+<p>Yeah, that's what everybody proposes to keep the language semantics
+unchanged. But I claim that an easier solution is to say to hell with
+those semantics, let's change them to make the implementation simpler.
+That's from the Zen of Python: "If the implementation is easy to
+explain, it may be a good idea." I guess few people can seriously
+propose to change Python's semantics, that's why I am proposing it.
+</p>
+</blockquote>
+<p>Guido [29]</p>
+<blockquote>
+<p>Accepting peps: A bit more motivation for my choice: re-reading PEP 549 reminded me of how
+its implementation is remarkably subtle (invoking Armin Rigo; for more
+details read https://www.python.org/dev/peps/pep-0549/#implementation). On
+the contrary, the implementation of PEP 562 is much simpler. With the Zen
+of Python in mind, this gives a hint that it is the better idea, and
+possibly even a good idea.
+</p>
+</blockquote>
+<p>Guido [30]</p>
+<h3>Namespaces are one honking great idea -- let's do more of those!</h3>
+<blockquote>
+<p>Namespaces (and also global and local scopes) are key for preventing names in one module or scope from conflicting with names in another. But also remember that flat is better than nested: As great as they are, namespaces should be made only to prevent naming conflicts, and not to add needless categorization.</p>
+</blockquote>
+<p>Al Sweigart [43]</p>
+<p>The Koans offered the programming world a great legacy. It is an interesting sight to see from Go to JavaScript devs analysing their own langs in the light of the Zen.</p>
+<p>Your suggestions accepted at: arj [.] python [@] gmail [.] com</p>
+<hr>
+<p>[1] https://mail.python.org/pipermail/python-list/1999-June/014096.html</p>
+<p>[2] https://en.wikipedia.org/wiki/Zen with references to Poceski and Yampolski</p>
+<p>[3] All-TIME 100 Nonfiction Books. Time, Inc. Retrieved 2014-05-14.</p>
+<p>[4] http://www.jlakes.org/ch/web/The-elements-of-style.pdf</p>
+<p>[5] https://mail.python.org/pipermail/python-list/1999-June/017368.html</p>
+<p>[6] https://mail.python.org/pipermail/python-list/1999-June/001951.html</p>
+<p>[7] https://mail.python.org/archives/list/python-ideas@python.org/thread/AE2M7KOIQR37K3XSQW7FSV5KO4LMYHWX/</p>
+<p>[8] https://www.mail-archive.com/python-dev@python.org/msg109166.html</p>
+<p>[9] https://github.com/wemake-services/wemake-python-styleguide/tree/fd7b6d9d14d73cab3d7f3ac4c910e4c75b093c4c</p>
+<p>[10] https://dev.to/abdurrahmaanj/the-zen-of-python-is-a-joke-and-here-is-why-you-should-not-take-it-too-seriously-508d</p>
+<p>[11] https://pythonbytes.fm/episodes/show/170/visualize-this-visualizing-python-s-visualization-ecosystem</p>
+<p>[12] https://mail.python.org/archives/list/python-dev@python.org/thread/DOKCD6TKN26DOOMYWAHFIMU3LGSCN7Y5/</p>
+<p>[13] https://mail.python.org/pipermail/docs/2014-June/019159.html</p>
+<p>[14] https://mail.python.org/pipermail/python-committers/2018-July/005747.html</p>
+<p>[15] https://www.wefearchange.org/2020/05/zenofpython.rst.html</p>
+<p>[16] https://www.wefearchange.org/2010/06/import-this-and-zen-of-python.html</p>
+<p>[17] Wikipaedia via Pullum, Geoffrey K. (April 17, 2009). "50 Years of Stupid Grammar Advice". The Chronicle of Higher Education.</p>
+<p>[18] http://python-history.blogspot.com/2009/01/pythons-design-philosophy.html</p>
+<p>[19] https://mail.python.org/pipermail/python-ideas/2018-September/053389.html</p>
+<p>[20] https://mail.python.org/pipermail/python-ideas/2018-September/053382.html</p>
+<p>[21] https://mail.python.org/pipermail/python-ideas/2018-September/053412.html</p>
+<p>[22] https://mail.python.org/pipermail/python-ideas/2018-September/053421.html</p>
+<p>[23] https://groups.google.com/g/python-ideas/c/Upc9MbzmFAA/m/2TiIWTlbBwAJ</p>
+<p>[24] https://mail.python.org/pipermail/import-sig/2012-March/000423.html</p>
+<p>[25] https://nothingbutsnark.silvrback.com/why-python-3-exists</p>
+<p>[26] https://twitter.com/brettsky/status/1253704411873869826?lang=en</p>
+<p>[27] https://mail.python.org/pipermail/python-list/2005-January.txt</p>
+<p>[28] https://mail.python.org/pipermail/python-dev/2010-December/106556.html</p>
+<p>[29] https://mail.python.org/archives/list/python-dev@python.org/thread/XZ23MPVGDDHUWE2VTGGEHVW4A4W76SH6/</p>
+<p>[30] https://mail.python.org/pipermail/python-dev/2017-November/150528.html</p>
+<p>[31] https://mail.python.org/pipermail/python-dev/2006-May/065059.html</p>
+<p>[32] https://mail.python.org/pipermail/python-3000/2006-April/000348.html</p>
+<p>[33] http://python-history.blogspot.com/2010/06/method-resolution-order.html</p>
+<p>[34] https://www.mail-archive.com/python-dev@python.org/msg100513.html</p>
+<p>[35] https://discuss.python.org/t/rejected-rfc-pep-608-coordinated-python-release/2539</p>
+<p>[36] https://static.realpython.com/python-tricks-book/Python%20Tricks%20Sample.pdf</p>
+<p>[37] https://mail.python.org/pipermail/python-list/2005-January/296762.html</p>
+<p>[38] https://mail.python.org/pipermail/python-list/2004-May/283635.html</p>
+<p>[39] https://mail.python.org/pipermail/python-ideas/2009-February/002998.html</p>
+<p>[40] https://mail.python.org/pipermail/python-list/2002-July/147124.html</p>
+<p>[41] https://mail.python.org/pipermail/python-dev/2013-July/127229.html</p>
+<p>[42] https://mail.python.org/pipermail/python-dev/2000-April/003742.html</p>
+<p>[43] https://inventwithpython.com/blog/2018/08/17/the-zen-of-python-explained/</p>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<!-- Sidebar -->
+<section class="well well-sm">
+  <ul class="list-group list-group-flush">
+
+<!-- Sidebar/Social -->
+<li class="list-group-item">
+  <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+  <ul class="list-group" id="social">
+    <li class="list-group-item"><a href="https://github.com/Abdur-RahmaanJ"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+    <li class="list-group-item"><a href="https://linkedin.com/in/appinv"><i class="fa fa-linkedin-square fa-lg"></i> linkedIn</a></li>
+    <li class="list-group-item"><a href="https://twitter.com/osdotsystem"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+  </ul>
+</li>
+<!-- End Sidebar/Social -->
+
+<!-- Sidebar/Links -->
+<li class="list-group-item">
+  <h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+  <ul class="list-group" id="links">
+    <li class="list-group-item">
+      <a href="http://getpelican.com/" target="_blank">Pelican</a>
+    </li>
+    <li class="list-group-item">
+      <a href="http://python.org/" target="_blank">Python.org</a>
+    </li>
+    <li class="list-group-item">
+      <a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a>
+    </li>
+  </ul>
+</li>
+<!-- End Sidebar/Links -->
+  </ul>
+</section>
+<!-- End Sidebar -->            </aside>
+        </div>
+    </div>
+</div>
+<!-- End Content Container -->
+
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2020 Abdur-Rahmaan Janhangeer
+            &middot; Powered by Python's Pelican         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="/theme/js/respond.min.js"></script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>How to build a CSS pre-processor (like SASS) from scratch - Refining the Azimuth</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="/articles/2019/07/21/build-css-preprocessor-sass-from-scratch/">
+
+        <meta name="author" content="Abdur-Rahmaan Janhangeer" />
+        <meta name="keywords" content="Python,css,sass" />
+        <meta name="description" content="If you are in web development, maybe you&#39;ve heard of Sass, Less, Pug, Stylus etc. All these are pre-processors. In this tutorial we&#39;re going to build nothing less than a functional css pre-processor from scratch with variables and functions. This type of new language is called source-to-source compiled. If you …" />
+
+        <meta property="og:site_name" content="Refining the Azimuth" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="How to build a CSS pre-processor (like SASS) from scratch"/>
+        <meta property="og:url" content="/articles/2019/07/21/build-css-preprocessor-sass-from-scratch/"/>
+        <meta property="og:description" content="If you are in web development, maybe you&#39;ve heard of Sass, Less, Pug, Stylus etc. All these are pre-processors. In this tutorial we&#39;re going to build nothing less than a functional css pre-processor from scratch with variables and functions. This type of new language is called source-to-source compiled. If you …"/>
+        <meta property="article:published_time" content="2019-07-21" />
+            <meta property="article:section" content="blogging" />
+            <meta property="article:tag" content="Python" />
+            <meta property="article:tag" content="css" />
+            <meta property="article:tag" content="sass" />
+            <meta property="article:author" content="Abdur-Rahmaan Janhangeer" />
+
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="/theme/css/bootstrap.superhero.min.css" type="text/css"/>
+    <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments/monokai.css" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
+        <link href="/theme/css/custom.css" rel="stylesheet">
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">
+Refining the Azimuth            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="/pages/about-me/">
+                             About Me
+                          </a></li>
+                         <li><a href="/pages/logofolio/">
+                             Logofolio
+                          </a></li>
+                        <li class="active">
+                            <a href="/category/blogging">Blogging</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<!-- Banner -->
+<!-- End Banner -->
+
+<!-- Content Container -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="/articles/2019/07/21/build-css-preprocessor-sass-from-scratch/"
+                       rel="bookmark"
+                       title="Permalink to How to build a CSS pre-processor (like SASS) from scratch">
+                        How to build a CSS pre-processor (like SASS) from scratch
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2019-07-21T09:00:00+04:00"> Sun 21 July 2019</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="/tag/python">Python</a>
+        /
+	<a href="/tag/css">css</a>
+        /
+	<a href="/tag/sass">sass</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p><img alt="" src="https://images.unsplash.com/photo-1543560267-d76d2f9f8ac2?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=750&amp;q=80"></p>
+<p>If you are in web development, maybe you've heard of <a href="https://sass-lang.com/documentation">Sass</a>, <a href="http://lesscss.org">Less</a>, Pug, <a href="http://stylus-lang.com">Stylus</a> etc. All these are pre-processors. In this tutorial we're going to build nothing less than a functional css pre-processor from scratch with variables and functions. This type of new language is called source-to-source compiled. If you are thrilled, i hope not to disappoint you.</p>
+<h3>Charting The Routes</h3>
+<p>First let’s see what we’ll be doing. We’ll call the language DotDot with extention .dot</p>
+<p>When designing a new language, it’s good to spend sometimes on design. If you have something that really flows, you can start coding.</p>
+<p>Here is a DotDot snippet:</p>
+<div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="w"></span>
+<span class="n">x</span><span class="o">-</span><span class="n">y</span><span class="o">-</span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="w"></span>
+<span class="n">col</span><span class="o">-</span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">berry</span><span class="w"></span>
+
+<span class="nv">@f</span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="nl">border</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="n">px</span><span class="w"> </span><span class="n">solid</span><span class="w"> </span><span class="n">black</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">border</span><span class="o">-</span><span class="nl">radius</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="o">%</span><span class="p">;</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="p">.</span><span class="k">add</span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="nl">color</span><span class="p">:</span><span class="n">white</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">background</span><span class="o">-</span><span class="nl">color</span><span class="p">:</span><span class="w"> </span><span class="n">rgb</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="n">#ad</span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="nl">color</span><span class="p">:</span><span class="w"> </span><span class="n">rgb</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="p">.</span><span class="n">a</span><span class="w"> </span><span class="n">div</span><span class="w"> </span><span class="n">a</span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="nl">color</span><span class="p">:</span><span class="w"> </span><span class="p">..</span><span class="n">col</span><span class="o">-</span><span class="n">z</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="nv">@f</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+</pre></div>
+
+
+<p>which compiles to this:</p>
+<div class="highlight"><pre><span></span><span class="na">.add</span><span class="err">{</span>
+    <span class="nl">color:</span> <span class="nf">white</span><span class="c">;</span>
+    <span class="nl">background-color:</span> <span class="nf">rgb</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span><span class="c">;</span>
+<span class="err">}</span>
+
+<span class="c">#ad{</span>
+    <span class="nl">color:</span> <span class="nf">rgb</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span><span class="c">;</span>
+<span class="err">}</span>
+
+<span class="na">.a</span> <span class="no">div</span> <span class="no">a</span><span class="err">{</span>
+    <span class="nl">color:</span> <span class="nf">berry</span><span class="c">;</span>
+    <span class="nl">border:</span> <span class="err">10</span><span class="nf">px</span> <span class="no">solid</span> <span class="no">black</span><span class="c">;</span>
+    <span class="nl">border-radius:</span> <span class="err">50%</span><span class="c">;</span>
+<span class="err">}</span>
+</pre></div>
+
+
+<p><img alt="" src="https://images.unsplash.com/photo-1547057740-4b18aac8eed2?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></p>
+<h3>Dissecting Design</h3>
+<p>Let’s see what features we included</p>
+<h3>Variables</h3>
+<div class="highlight"><pre><span></span><span class="err">x = 1</span>
+<span class="err">y = 5</span>
+<span class="err">x-y-z = 6</span>
+<span class="err">col-z = berry</span>
+</pre></div>
+
+
+<p>We see that</p>
+<ul>
+<li>we don’t need to specify a specifier like $ or var in Js.</li>
+<li>we can add – in the variable name</li>
+</ul>
+<p>We can also call variables in function values</p>
+<div class="highlight"><pre><span></span><span class="err">rgb(x, 4, 5);</span>
+</pre></div>
+
+
+<p>And in attribute values</p>
+<div class="highlight"><pre><span></span><span class="c">color: ..col-z;</span>
+</pre></div>
+
+
+<p>Where .. denotes a variable call in attribute directly.</p>
+<h5>Functions</h5>
+<div class="highlight"><pre><span></span><span class="err">@f{</span>
+<span class="err">    border: 10px solid black;</span>
+<span class="err">    border-radius: 50%;</span>
+<span class="err">}</span>
+</pre></div>
+
+
+<p>Functions are denoted by an @ sign. These are called as in the following case where it expands into the properties it contains.</p>
+<div class="highlight"><pre><span></span><span class="na">.a</span> <span class="no">div</span> <span class="no">a</span><span class="err">{</span>
+    <span class="nl">color:</span> <span class="na">..col-z</span><span class="c">;</span>
+    <span class="err">@</span><span class="nf">f</span>
+<span class="err">}</span>
+</pre></div>
+
+
+<p>That is enough complexity to deal with. Let’s start!</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">copy</span> <span class="c1">### we have just one import</span>
+</pre></div>
+
+
+<p>and we put the source as a variable</p>
+<div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+
+<span class="s1">x = 1</span>
+<span class="s1">y = 5</span>
+<span class="s1">x-y-z = 6</span>
+<span class="s1">col-z = berry</span>
+
+<span class="s1">@f{</span>
+<span class="s1">    border: 10px solid black;</span>
+<span class="s1">    border-radius: 50%;</span>
+<span class="s1">}</span>
+
+<span class="s1">.add{</span>
+<span class="s1">    color:white;</span>
+<span class="s1">    background-color: rgb(3, 4, 5);</span>
+<span class="s1">}</span>
+
+<span class="s1">#ad{</span>
+<span class="s1">    color: rgb(x, 4, 5);</span>
+<span class="s1">}</span>
+
+<span class="s1">.a div a{</span>
+<span class="s1">    color: ..col-z;</span>
+<span class="s1">    @f</span>
+<span class="s1">}</span>
+<span class="s1">&#39;&#39;&#39;</span>
+</pre></div>
+
+
+<h3>Defining Constants</h3>
+<p>We’ve bundled our constants in a class.</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SYM</span><span class="p">:</span>
+    <span class="n">LEFT_BRACE</span> <span class="o">=</span> <span class="s1">&#39;{&#39;</span>
+    <span class="n">RIGHT_BRACE</span> <span class="o">=</span> <span class="s1">&#39;}&#39;</span>
+    <span class="n">LEFT_ROUND</span> <span class="o">=</span> <span class="s1">&#39;(&#39;</span>
+    <span class="n">RIGHT_ROUND</span> <span class="o">=</span> <span class="s1">&#39;)&#39;</span>
+    <span class="n">NEW_LINE</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+    <span class="n">TAB</span> <span class="o">=</span> <span class="s1">&#39;    &#39;</span>
+    <span class="n">COLON</span> <span class="o">=</span> <span class="s1">&#39;:&#39;</span>
+    <span class="n">SEMI_COLON</span> <span class="o">=</span> <span class="s1">&#39;;&#39;</span>
+    <span class="n">SPACE</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
+    <span class="n">COMMA</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span>
+    <span class="n">EQUAL</span> <span class="o">=</span> <span class="s1">&#39;=&#39;</span>
+    <span class="n">UNION</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span>
+    <span class="n">DOT</span> <span class="o">=</span> <span class="s1">&#39;.&#39;</span>
+    <span class="n">AT</span> <span class="o">=</span> <span class="s1">&#39;@&#39;</span>
+</pre></div>
+
+
+<p>We then define our keywords</p>
+<div class="highlight"><pre><span></span><span class="n">KEYWORDS</span> <span class="o">=</span> <span class="p">(</span><span class="n">SYM</span><span class="o">.</span><span class="n">LEFT_BRACE</span><span class="p">,</span> <span class="n">SYM</span><span class="o">.</span><span class="n">RIGHT_BRACE</span><span class="p">,</span> <span class="n">SYM</span><span class="o">.</span><span class="n">NEW_LINE</span><span class="p">,</span> <span class="n">SYM</span><span class="o">.</span><span class="n">TAB</span><span class="p">,</span> <span class="n">SYM</span><span class="o">.</span><span class="n">COLON</span><span class="p">,</span> 
+    <span class="n">SYM</span><span class="o">.</span><span class="n">SEMI_COLON</span><span class="p">,</span> <span class="n">SYM</span><span class="o">.</span><span class="n">SPACE</span><span class="p">,</span> <span class="n">SYM</span><span class="o">.</span><span class="n">RIGHT_ROUND</span><span class="p">,</span> <span class="n">SYM</span><span class="o">.</span><span class="n">LEFT_ROUND</span><span class="p">,</span> <span class="n">SYM</span><span class="o">.</span><span class="n">COMMA</span><span class="p">,</span> <span class="n">SYM</span><span class="o">.</span><span class="n">EQUAL</span><span class="p">)</span>
+</pre></div>
+
+
+<p><img alt="" src="https://images.unsplash.com/reserve/81gZijLSWfge41LgzqQ6_Moving%20Parts.JPG?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=752&amp;q=80"></p>
+<h4>Building the Lexer</h4>
+<p>The code for the lexer is from <a href="https://www.pythonmembers.club/2018/05/01/building-a-lexer-in-python-tutorial/">this lexer tutorial</a>. Please go over it if you feel the need to. Here we converted the code into a class with a get_lexeme method. The method gives us a list. The dotdot snippet above gets converted to the list held in lexemes variable below.</p>
+<p>Here is our lexer class:</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Lexer</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">KEYWORDS</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">white_space</span> <span class="o">=</span> <span class="n">SYM</span><span class="o">.</span><span class="n">SPACE</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">KEYWORDS</span> <span class="o">=</span> <span class="n">KEYWORDS</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lexeme</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lexemes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">string</span> <span class="o">=</span> <span class="n">source</span>
+
+    <span class="k">def</span> <span class="nf">get_lexemes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">char</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">string</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">char</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">white_space</span> <span class="ow">and</span> <span class="n">char</span> <span class="o">!=</span> <span class="n">SYM</span><span class="o">.</span><span class="n">NEW_LINE</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">lexeme</span> <span class="o">+=</span> <span class="n">char</span>  <span class="c1">### adding a char each time</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">string</span><span class="p">)):</span>  <span class="c1">### prevents error</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">string</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">white_space</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">string</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="n">KEYWORDS</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">lexeme</span> <span class="ow">in</span> <span class="n">KEYWORDS</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">string</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">SYM</span><span class="o">.</span><span class="n">NEW_LINE</span><span class="p">:</span> <span class="c1">### if next char == &#39; &#39;</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lexeme</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">lexemes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lexeme</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">lexeme</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lexemes</span>
+</pre></div>
+
+
+<p>Then we declare our basic variables:</p>
+<div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">Lexer</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">KEYWORDS</span><span class="p">)</span>
+<span class="n">lexemes</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">get_lexemes</span><span class="p">()</span>
+
+<span class="n">lexemes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="c1">### appending an unused last element to properly dump all values</span>
+</pre></div>
+
+
+<p>lexemes is now equal to</p>
+<div class="highlight"><pre><span></span><span class="err">[&#39;x&#39;, &#39;=&#39;, &#39;1&#39;, &#39;y&#39;, &#39;=&#39;, &#39;5&#39;, &#39;x-y-z&#39;, &#39;=&#39;, &#39;6&#39;, &#39;col-z&#39;, </span>
+<span class="err">&#39;=&#39;, &#39;berry&#39;, &#39;@f&#39;, &#39;{&#39;, &#39;border&#39;, &#39;:&#39;, &#39;10px&#39;, &#39;solid&#39;, </span>
+<span class="err">&#39;black&#39;, &#39;;&#39;, &#39;border-radius&#39;, &#39;:&#39;, &#39;50%&#39;, &#39;;&#39;, &#39;}&#39;, &#39;.add&#39;, </span>
+<span class="err">&#39;{&#39;, &#39;color&#39;, &#39;:&#39;, &#39;white&#39;, &#39;;&#39;, &#39;background-color&#39;, &#39;:&#39;, </span>
+<span class="err">&#39;rgb&#39;, &#39;(&#39;, &#39;3&#39;, &#39;,&#39;, &#39;4&#39;, &#39;,&#39;, &#39;5&#39;, &#39;)&#39;, &#39;;&#39;, &#39;}&#39;, &#39;#ad&#39;, </span>
+<span class="err">&#39;{&#39;, &#39;color&#39;, &#39;:&#39;, &#39;rgb&#39;,&#39;(&#39;, &#39;x&#39;, &#39;,&#39;, &#39;4&#39;, &#39;,&#39;, &#39;5&#39;, &#39;)&#39;, </span>
+<span class="err">&#39;;&#39;, &#39;}&#39;, &#39;.a&#39;, &#39;div&#39;, &#39;a&#39;, &#39;{&#39;, &#39;color&#39;, &#39;:&#39;, &#39;..col-z&#39;, </span>
+<span class="err">&#39;;&#39;, &#39;@f&#39;, &#39;}&#39;, &#39;&#39;]</span>
+</pre></div>
+
+
+<p>With such separated data, it’s much easier to proceed!</p>
+<h3>The Concept of Memory</h3>
+<p>Next we define a dictionary to hold all our variables.</p>
+<div class="highlight"><pre><span></span><span class="err">memory = {}</span>
+</pre></div>
+
+
+<p>where</p>
+<div class="highlight"><pre><span></span><span class="err">x = 1</span>
+</pre></div>
+
+
+<p>will become this later on:</p>
+<div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span><span class="s1">&#39;1&#39;</span><span class="p">}</span>
+</pre></div>
+
+
+<p>to retrieve it we’ll just do</p>
+<div class="highlight"><pre><span></span><span class="n">memory</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span>
+</pre></div>
+
+
+<h4>The Concept of Tree</h4>
+<p>We’ll have a dictionary called tree</p>
+<div class="highlight"><pre><span></span><span class="n">tree</span> <span class="o">=</span> <span class="p">{}</span>
+</pre></div>
+
+
+<p>which will hold the converted code as</p>
+<div class="highlight"><pre><span></span><span class="err">{</span>
+<span class="err">    &#39;@f&#39;: {</span>
+<span class="err">        &#39;border&#39;: &#39;10px solid black&#39;, </span>
+<span class="err">        &#39;border-radius&#39;: &#39;50%&#39;</span>
+<span class="err">    }, </span>
+<span class="err">    &#39;.add&#39;: {</span>
+<span class="err">        &#39;color&#39;:&#39;white&#39;, </span>
+<span class="err">        &#39;background-color&#39;: &#39;rgb ( 3 , 4 , 5 )&#39;</span>
+<span class="err">    }, &#39;#ad&#39;: {</span>
+<span class="err">        &#39;color&#39;: &#39;rgb ( x ,4 , 5 )&#39;</span>
+<span class="err">    }, </span>
+<span class="err">    &#39;.a div a&#39;: {</span>
+<span class="err">        &#39;color&#39;: &#39;..col-z&#39;, </span>
+<span class="err">        &#39;@f&#39;: &#39;&#39;</span>
+<span class="err">    }</span>
+<span class="err">}</span>
+</pre></div>
+
+
+<p>Our next step will exactly be this: converting the lexemes list into this dictionary</p>
+<p><img alt="" src="https://images.unsplash.com/photo-1445294211564-3ca59d999abd?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=667&amp;q=80"></p>
+<h3>Generating The Tree</h3>
+<p>To keep track of where we are, we’ll have a series of variables taking True/False values (on/off)</p>
+<h5>Setting Up Holders</h5>
+<div class="highlight"><pre><span></span><span class="n">id_string</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">last_id_string</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">last_attribute</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+<span class="n">current_attribute</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">current_value</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+<span class="n">len_lexemes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">lexemes</span><span class="p">)</span>
+</pre></div>
+
+
+<p>id string will hold like #add, .x a div etc</p>
+<p>the last_ variables just hold variables that are not emptied upon leaving the sub section</p>
+<h5>Setting Up Flags</h5>
+<p>We’ll have 3 flags.</p>
+<p>One when we are starting a block, which will become true when encountering a { and false when encountering a }</p>
+<p>An attribute is color in color:black;</p>
+<p>The attribute ongoing will become true when passing over { and ; and will become false when passing over :</p>
+<p>value_ongoing will become true when going over : and false when going over ;</p>
+<div class="highlight"><pre><span></span><span class="n">block_ongoing</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">attribute_ongoing</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">value_ongoing</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+
+
+<p>We’ll start looping over the list and implement what we described of the flags above</p>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">lex</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lexemes</span><span class="p">):</span>
+
+    <span class="k">if</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">len_lexemes</span><span class="p">:</span>
+        <span class="n">next_lexeme</span> <span class="o">=</span> <span class="n">lexemes</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">prev_lexeme</span> <span class="o">=</span> <span class="n">lexemes</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">lex</span> <span class="o">==</span> <span class="n">SYM</span><span class="o">.</span><span class="n">LEFT_BRACE</span><span class="p">:</span>
+        <span class="n">block_ongoing</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">attribute_ongoing</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">continue</span>
+    <span class="k">elif</span> <span class="n">lex</span> <span class="o">==</span> <span class="n">SYM</span><span class="o">.</span><span class="n">RIGHT_BRACE</span><span class="p">:</span>
+        <span class="n">block_ongoing</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">statement_ongoing</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">attribute_ongoing</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">value_ongoing</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">continue</span>
+    <span class="k">if</span> <span class="n">lex</span> <span class="o">==</span> <span class="n">SYM</span><span class="o">.</span><span class="n">COLON</span><span class="p">:</span>
+        <span class="n">value_ongoing</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">attribute_ongoing</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">continue</span>
+    <span class="k">elif</span> <span class="n">lex</span> <span class="o">==</span> <span class="n">SYM</span><span class="o">.</span><span class="n">SEMI_COLON</span><span class="p">:</span>
+        <span class="n">value_ongoing</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">statement_ongoing</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">attribute_ongoing</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">continue</span>
+</pre></div>
+
+
+<p>Continue is needed as once we have activated a flag, we have no work to do, we move on.</p>
+<h3>Dealing with variables</h3>
+<p>To assign variables, we just wait for the = sign then continue.</p>
+<p>Then when going over a variable name or a value we just prevent the loop from continuing by using continue</p>
+<div class="highlight"><pre><span></span>    <span class="k">if</span> <span class="n">lex</span> <span class="o">==</span> <span class="n">SYM</span><span class="o">.</span><span class="n">EQUAL</span><span class="p">:</span>
+        <span class="n">memory</span><span class="p">[</span><span class="n">prev_lexeme</span><span class="p">]</span> <span class="o">=</span> <span class="n">next_lexeme</span>
+        <span class="k">continue</span>
+    <span class="k">elif</span> <span class="n">next_lexeme</span> <span class="o">==</span> <span class="n">SYM</span><span class="o">.</span><span class="n">EQUAL</span> <span class="ow">or</span> <span class="n">prev_lexeme</span> <span class="o">==</span> <span class="n">SYM</span><span class="o">.</span><span class="n">EQUAL</span><span class="p">:</span>
+        <span class="k">continue</span>
+</pre></div>
+
+
+<h3>Where The Tree Builds</h3>
+<p>Now we’ll make use of the flags</p>
+<div class="highlight"><pre><span></span>    <span class="k">if</span> <span class="ow">not</span> <span class="n">block_ongoing</span><span class="p">:</span>
+        <span class="n">id_string</span> <span class="o">+=</span> <span class="n">lex</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span>
+    <span class="k">elif</span> <span class="n">block_ongoing</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">id_string</span><span class="p">:</span>
+            <span class="n">tree</span><span class="p">[</span><span class="n">id_string</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">last_id_string</span> <span class="o">=</span> <span class="n">id_string</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="n">id_string</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</pre></div>
+
+
+<p>Here we are dealing with the block id, example #add in #add {}. We did</p>
+<div class="highlight"><pre><span></span><span class="n">tree</span><span class="p">[</span><span class="n">id_string</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span> <span class="o">=</span> <span class="p">{}</span>
+</pre></div>
+
+
+<p>here is an example tree at this point</p>
+<div class="highlight"><pre><span></span><span class="err">{</span>
+<span class="err">&#39;.add&#39;: {}</span>
+<span class="err">}</span>
+</pre></div>
+
+
+<p>Using the same principle, we’ll do so for the attribute</p>
+<div class="highlight"><pre><span></span>    <span class="k">if</span> <span class="n">attribute_ongoing</span><span class="p">:</span>
+        <span class="n">current_attribute</span> <span class="o">+=</span> <span class="n">lex</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">attribute_ongoing</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">current_attribute</span><span class="p">:</span>
+            <span class="n">tree</span><span class="p">[</span><span class="n">last_id_string</span><span class="p">][</span><span class="n">current_attribute</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="n">last_attribute</span> <span class="o">=</span> <span class="n">current_attribute</span>
+            <span class="n">current_attribute</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</pre></div>
+
+
+<p>Here is an example tree at this point</p>
+<div class="highlight"><pre><span></span><span class="err">{</span>
+<span class="err">&#39;.add&#39;: {</span>
+<span class="err">        &#39;color&#39;:&#39;&#39;</span>
+<span class="err">    }</span>
+<span class="err">}</span>
+</pre></div>
+
+
+<p>and value</p>
+<div class="highlight"><pre><span></span>    <span class="k">if</span> <span class="n">value_ongoing</span><span class="p">:</span>
+        <span class="n">current_value</span> <span class="o">+=</span> <span class="n">lex</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">value_ongoing</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">current_value</span><span class="p">:</span>
+            <span class="n">tree</span><span class="p">[</span><span class="n">last_id_string</span><span class="p">][</span><span class="n">last_attribute</span><span class="p">]</span> <span class="o">=</span> <span class="n">current_value</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="n">last_value</span> <span class="o">=</span> <span class="n">current_value</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="n">current_value</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</pre></div>
+
+
+<p>Here is an example tree at this point</p>
+<div class="highlight"><pre><span></span><span class="err">{</span>
+<span class="err">&#39;.add&#39;: {</span>
+<span class="err">        &#39;color&#39;:&#39;white&#39;</span>
+<span class="err">    }</span>
+<span class="err">}</span>
+</pre></div>
+
+
+<p>That snippet ends our tree-building block</p>
+<h3>Replacing Values</h3>
+<p>Now let us see how to replace variable names in functions like rgb() and rgba()</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">parseFunc</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">SYM</span><span class="o">.</span><span class="n">LEFT_ROUND</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">vals</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">SYM</span><span class="o">.</span><span class="n">SPACE</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="n">vals</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">SYM</span><span class="o">.</span><span class="n">COMMA</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">v</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">():</span>
+            <span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">memory</span><span class="p">[</span><span class="n">v</span><span class="p">]</span>
+    <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">(</span><span class="si">{}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">values</span><span class="p">))</span>
+</pre></div>
+
+
+<p>Here we replace rgb(x, 4, 5) to rgb(1, 4, 5) by replacing the x by 1 in the memory dictionary. To build a CSS pre-processor from scratch, we have to take all cases, which we’ll do after.</p>
+<p><img alt="" src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=334&amp;q=80"></p>
+<h3>Transforming The Tree Into It’s Final Form</h3>
+<p>Now we need to pass over the tree once again and expand functions, replace values, including the use of our defined function above.</p>
+<p>Technically we can’t change a dictionary while iterating over it. We have to copy it to break references. We have to deepcopy it.</p>
+<div class="highlight"><pre><span></span><span class="n">ntree</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+</pre></div>
+
+
+<p>then we iterate over:</p>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">block_name</span> <span class="ow">in</span> <span class="n">ntree</span><span class="p">:</span>
+    <span class="n">properties</span> <span class="o">=</span> <span class="n">ntree</span><span class="p">[</span><span class="n">block_name</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">block_name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">SYM</span><span class="o">.</span><span class="n">AT</span><span class="p">:</span>
+        <span class="k">continue</span>
+</pre></div>
+
+
+<p>Now, if we get the first symbol of the id as a @, we just skip it as we don’t need to expand the definition.</p>
+<div class="highlight"><pre><span></span>    <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">properties</span><span class="p">:</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="n">element</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">SYM</span><span class="o">.</span><span class="n">LEFT_ROUND</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
+            <span class="n">tree</span><span class="p">[</span><span class="n">block_name</span><span class="p">][</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="n">parseFunc</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Next we say if there is a ( in the value, it denotes a function like rgb(). In that case we use our function parseFunc.</p>
+<div class="highlight"><pre><span></span>        <span class="k">if</span> <span class="n">SYM</span><span class="o">.</span><span class="n">DOT</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
+            <span class="n">tree</span><span class="p">[</span><span class="n">block_name</span><span class="p">][</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="n">memory</span><span class="p">[</span><span class="n">value</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="n">SYM</span><span class="o">.</span><span class="n">DOT</span><span class="p">)]</span>
+</pre></div>
+
+
+<p>Next we see a . in the value, we go see in the memory dictionary and replace it</p>
+<div class="highlight"><pre><span></span>        <span class="k">if</span> <span class="n">SYM</span><span class="o">.</span><span class="n">AT</span> <span class="ow">in</span> <span class="n">element</span><span class="p">:</span>
+            <span class="k">del</span> <span class="n">tree</span><span class="p">[</span><span class="n">block_name</span><span class="p">][</span><span class="n">element</span><span class="p">]</span>
+            <span class="n">tree</span><span class="p">[</span><span class="n">block_name</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">tree</span><span class="p">[</span><span class="n">element</span><span class="p">])</span>
+</pre></div>
+
+
+<p>Next we see the @<something> symbol as key in a block, we just add the dictionaries in it to the dictionaries in that block (Done by update() in Python) .</p>
+<p>That also shows the advantage of using a data structure over plain strings.</p>
+<p><img alt="" src="https://images.unsplash.com/photo-1549049961-dc5c55b76754?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=400&amp;q=80"></p>
+<h3>Compiling To Normal Css</h3>
+<p>Now we can compile it to normal CSS, we’ll just print it for now (you can file= in print btw)</p>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">tree</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">key</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">SYM</span><span class="o">.</span><span class="n">AT</span><span class="p">:</span>
+        <span class="k">continue</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s1">&#39;{&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">tree</span><span class="p">[</span><span class="n">key</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}{}</span><span class="s1">: </span><span class="si">{}</span><span class="s1">;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">SYM</span><span class="o">.</span><span class="n">TAB</span><span class="p">,</span> <span class="n">elem</span><span class="p">,</span> <span class="n">tree</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">elem</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>which produces</p>
+<div class="highlight"><pre><span></span><span class="na">.add</span><span class="err">{</span>
+    <span class="nl">color:</span> <span class="nf">white</span><span class="c">;</span>
+    <span class="nl">background-color:</span> <span class="nf">rgb</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span><span class="c">;</span>
+<span class="err">}</span>
+
+<span class="c">#ad{</span>
+    <span class="nl">color:</span> <span class="nf">rgb</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span><span class="c">;</span>
+<span class="err">}</span>
+
+<span class="na">.a</span> <span class="no">div</span> <span class="no">a</span><span class="err">{</span>
+    <span class="nl">color:</span> <span class="nf">berry</span><span class="c">;</span>
+    <span class="nl">border:</span> <span class="err">10</span><span class="nf">px</span> <span class="no">solid</span> <span class="no">black</span><span class="c">;</span>
+    <span class="nl">border-radius:</span> <span class="err">50%</span><span class="c">;</span>
+<span class="err">}</span>
+</pre></div>
+
+
+<h3>The Future of It</h3>
+<p>This was done without a safety net and lacking lot of cool features but it is done to demonstrate that with some normal programming logic, you can set up something cool. It was my usual linkedIn Python Project of The Week.</p>
+<p>If you want to build a CSS pre-processor from scratch based on indentation (like stylus), use <a href="https://www.pythonmembers.club/2018/05/04/building-an-indentation-analyser-in-python-tutorial/">this tutorial</a>.</p>
+<p>What's the next thing/s to add? Comment it below!</p>
+<p>Github Link: <a href="https://github.com/Abdur-rahmaanJ/dotdot">https://github.com/Abdur-rahmaanJ/dotdot</a></p>
+<p>Images from unsplash</p>
+<p>— Abdur-Rahmaan Janhangeer</p>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<!-- Sidebar -->
+<section class="well well-sm">
+  <ul class="list-group list-group-flush">
+
+<!-- Sidebar/Social -->
+<li class="list-group-item">
+  <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+  <ul class="list-group" id="social">
+    <li class="list-group-item"><a href="https://github.com/Abdur-RahmaanJ"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+    <li class="list-group-item"><a href="https://linkedin.com/in/appinv"><i class="fa fa-linkedin-square fa-lg"></i> linkedIn</a></li>
+    <li class="list-group-item"><a href="https://twitter.com/osdotsystem"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+  </ul>
+</li>
+<!-- End Sidebar/Social -->
+
+<!-- Sidebar/Links -->
+<li class="list-group-item">
+  <h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+  <ul class="list-group" id="links">
+    <li class="list-group-item">
+      <a href="http://getpelican.com/" target="_blank">Pelican</a>
+    </li>
+    <li class="list-group-item">
+      <a href="http://python.org/" target="_blank">Python.org</a>
+    </li>
+    <li class="list-group-item">
+      <a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a>
+    </li>
+  </ul>
+</li>
+<!-- End Sidebar/Links -->
+  </ul>
+</section>
+<!-- End Sidebar -->            </aside>
+        </div>
+    </div>
+</div>
+<!-- End Content Container -->
+
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2020 Abdur-Rahmaan Janhangeer
+            &middot; Powered by Python's Pelican         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="/theme/js/respond.min.js"></script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Deque: Add Superpowers To Your Python Lists Using This Feature - Refining the Azimuth</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="/articles/2019/03/07/deque-add-superpowers-to-your-python-lists/">
+
+        <meta name="author" content="Abdur-Rahmaan Janhangeer" />
+        <meta name="keywords" content="python,deque,collections" />
+        <meta name="description" content="Python lists are nice, deque spice things up. let&#39;s see how. disclaimer: that&#39;s a somewhat really complete guide on deque. bonus: sample program at the end What does deque stands for? deque stands for double-ended queue let&#39;s import only deque as we are experimenting from collections import deque next …" />
+
+        <meta property="og:site_name" content="Refining the Azimuth" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Deque: Add Superpowers To Your Python Lists Using This Feature"/>
+        <meta property="og:url" content="/articles/2019/03/07/deque-add-superpowers-to-your-python-lists/"/>
+        <meta property="og:description" content="Python lists are nice, deque spice things up. let&#39;s see how. disclaimer: that&#39;s a somewhat really complete guide on deque. bonus: sample program at the end What does deque stands for? deque stands for double-ended queue let&#39;s import only deque as we are experimenting from collections import deque next …"/>
+        <meta property="article:published_time" content="2019-03-07" />
+            <meta property="article:section" content="blogging" />
+            <meta property="article:tag" content="python" />
+            <meta property="article:tag" content="deque" />
+            <meta property="article:tag" content="collections" />
+            <meta property="article:author" content="Abdur-Rahmaan Janhangeer" />
+
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="/theme/css/bootstrap.superhero.min.css" type="text/css"/>
+    <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments/monokai.css" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
+        <link href="/theme/css/custom.css" rel="stylesheet">
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">
+Refining the Azimuth            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="/pages/about-me/">
+                             About Me
+                          </a></li>
+                         <li><a href="/pages/logofolio/">
+                             Logofolio
+                          </a></li>
+                        <li class="active">
+                            <a href="/category/blogging">Blogging</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<!-- Banner -->
+<!-- End Banner -->
+
+<!-- Content Container -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="/articles/2019/03/07/deque-add-superpowers-to-your-python-lists/"
+                       rel="bookmark"
+                       title="Permalink to Deque: Add Superpowers To Your Python Lists Using This Feature">
+                        Deque: Add Superpowers To Your Python Lists Using This Feature
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2019-03-07T09:00:00+04:00"> Thu 07 March 2019</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="/tag/python">python</a>
+        /
+	<a href="/tag/deque">deque</a>
+        /
+	<a href="/tag/collections">collections</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>Python lists are nice, deque spice things up. let's see how.</p>
+<p><strong>disclaimer: that's a somewhat <em>really</em> complete guide on deque.</strong></p>
+<p>bonus: sample program at the end</p>
+<h2>What does <em>deque</em> stands for?</h2>
+<p>deque stands for <strong>d</strong>ouble-ended <strong>queue</strong></p>
+<p>let's import only deque as we are experimenting</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+</pre></div>
+
+
+<p>next we create an instance of it</p>
+<div class="highlight"><pre><span></span><span class="n">list1</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
+</pre></div>
+
+
+<h2>Adding elements on creation</h2>
+<p>that one is missed by many, many, (once again) many deque tutorials</p>
+<div class="highlight"><pre><span></span><span class="n">list1</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">])</span>
+</pre></div>
+
+
+<p>the fact that you can populate it on creation</p>
+<h2>Adding elements</h2>
+<p>much like a list, .append can be used</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">list1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">list1</span>
+<span class="n">deque</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">])</span>
+</pre></div>
+
+
+<h2>Extending</h2>
+<p>you can also add by extending</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">list1</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">list1</span>
+<span class="n">deque</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">list1</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="s1">&#39;bc&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">list1</span>
+<span class="n">deque</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">])</span>
+</pre></div>
+
+
+<p>you can also extend using list</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">list1</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s1">&#39;def&#39;</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">list1</span>
+<span class="n">deque</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;def&#39;</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">list1</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">list1</span>
+<span class="n">deque</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;def&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">])</span>
+</pre></div>
+
+
+<h2>From the left</h2>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">list1</span><span class="o">.</span><span class="n">extendleft</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">list1</span>
+<span class="n">deque</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;def&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">list1</span><span class="o">.</span><span class="n">appendleft</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">list1</span>
+<span class="n">deque</span><span class="p">([[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;def&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">])</span>
+</pre></div>
+
+
+<h2>Getting elements</h2>
+<p>works just like lists</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">list1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+</pre></div>
+
+
+<h2>Getting index of element</h2>
+<p>:warning: again just like lists but with <strong>py3.5 &gt;=</strong></p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">list1</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="mi">4</span>
+</pre></div>
+
+
+<h2>Getting index between range</h2>
+<p>let us say you want to search an element between the index 5 and 9
+we want to search for 'b'</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">deque</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+<span class="mi">7</span>
+</pre></div>
+
+
+<p>where searching is lower bound inclusive</p>
+<h2>Pop joins the game</h2>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">list1</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">list1</span>
+<span class="n">deque</span><span class="p">([[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;def&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">])</span>
+</pre></div>
+
+
+<p>and from the left</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">list1</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">list1</span>
+<span class="n">deque</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;def&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">])</span>
+</pre></div>
+
+
+<h2>A note on non-pep8 compliance</h2>
+<p>notice that popleft etc don't follow pep8</p>
+<h2>A fixed-width list (great! no need to check and delete)</h2>
+<p>a deque can be constrained as follows</p>
+<div class="highlight"><pre><span></span><span class="n">pipe</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="n">maxlen</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+
+<p>now let us add elements</p>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">pipe</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pipe</span><span class="p">)</span>
+</pre></div>
+
+
+<p>gives out:</p>
+<div class="highlight"><pre><span></span><span class="n">deque</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="n">maxlen</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+
+<p>we see that 0 to 5 has been automaitcally eliminated</p>
+<h2>Roation is amazing</h2>
+<p>let us say you have</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">alphs</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">alphs</span><span class="o">.</span><span class="n">extends</span><span class="p">(</span><span class="s1">&#39;abcdef&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">alphs</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">alphs</span>
+<span class="n">deque</span><span class="p">([</span><span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">])</span>
+</pre></div>
+
+
+<p>rotating by a negative index e.g. -2 rotates in the opposite direction</p>
+<h2>Implementing a simple cipher</h2>
+<p>using rotate, a cipher is very easy</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+<span class="kn">import</span> <span class="nn">string</span>
+
+<span class="n">original</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
+<span class="n">rotated</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
+
+<span class="n">original</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="p">)</span> <span class="c1"># a .. z</span>
+<span class="n">rotated</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="p">)</span>
+<span class="n">rotated</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">original</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rotated</span><span class="p">)</span>
+
+<span class="n">to_encode</span> <span class="o">=</span> <span class="s1">&#39;myhouse&#39;</span>
+<span class="n">encoded_text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">to_encode</span><span class="p">:</span>
+    <span class="n">index_char</span> <span class="o">=</span> <span class="n">original</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+    <span class="n">encoded_char</span> <span class="o">=</span> <span class="n">rotated</span><span class="p">[</span><span class="n">index_char</span><span class="p">]</span>
+    <span class="n">encoded_text</span> <span class="o">+=</span> <span class="n">encoded_char</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">encoded_text</span><span class="p">)</span>
+
+<span class="n">decoded_text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">encoded_text</span><span class="p">:</span>
+    <span class="n">index_char</span> <span class="o">=</span> <span class="n">rotated</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+    <span class="n">decoded_char</span> <span class="o">=</span> <span class="n">original</span><span class="p">[</span><span class="n">index_char</span><span class="p">]</span>
+    <span class="n">decoded_text</span> <span class="o">+=</span> <span class="n">decoded_char</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">decoded_text</span><span class="p">)</span>
+</pre></div>
+
+
+<p>gives out</p>
+<div class="highlight"><pre><span></span><span class="err">deque([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;, &#39;g&#39;, &#39;h&#39;, &#39;i&#39;, &#39;j&#39;, &#39;k&#39;, &#39;l&#39;, &#39;m&#39;, &#39;n&#39;, &#39;o&#39;, &#39;p&#39;, &#39;q&#39;, &#39;r&#39;, &#39;s&#39;, &#39;t&#39;, &#39;u&#39;, &#39;v&#39;, &#39;w&#39;, &#39;x&#39;, &#39;y&#39;, &#39;z&#39;])</span>
+<span class="err">deque([&#39;y&#39;, &#39;z&#39;, &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;, &#39;g&#39;, &#39;h&#39;, &#39;i&#39;, &#39;j&#39;, &#39;k&#39;, &#39;l&#39;, &#39;m&#39;, &#39;n&#39;, &#39;o&#39;, &#39;p&#39;, &#39;q&#39;, &#39;r&#39;, &#39;s&#39;, &#39;t&#39;, &#39;u&#39;, &#39;v&#39;, &#39;w&#39;, &#39;x&#39;])</span>
+<span class="err">kwfmsqc</span>
+<span class="err">myhouse</span>
+</pre></div>
+
+
+<h2>A warning though</h2>
+<p>don't do</p>
+<div class="highlight"><pre><span></span><span class="n">original</span> <span class="o">=</span> <span class="n">rotated</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
+</pre></div>
+
+
+<p>as changing one also changes the other due to python references</p>
+<p>as that snippet shows</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">original</span> <span class="o">=</span> <span class="n">rotated</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">rotated</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="s1">&#39;abc&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">rotated</span>
+<span class="n">deque</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">original</span>
+<span class="n">deque</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">original</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">rotated</span>
+<span class="n">deque</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">])</span>
+</pre></div>
+
+
+<h2>What we did not cover with examples</h2>
+<ul>
+<li>.remove(4): removes the element 4 in the deque else raises ValueError</li>
+<li>.reverse(): reverses deque, [1, 2, 3] becomes [3, 2, 1]</li>
+<li>.clear(): clears deque, deque(['a', 'b', 'c']) becomes deque([])</li>
+<li>.count('a'): gives out the number of occurances. deque(['a', 'b', 'c']).count('a') gives out 1</li>
+<li>.insert(index, element). x = deque(['a', 'b', 'c']); x.insert(1, 't'); where x becomes deque(['a', 't', 'b', 'c'])</li>
+</ul>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<!-- Sidebar -->
+<section class="well well-sm">
+  <ul class="list-group list-group-flush">
+
+<!-- Sidebar/Social -->
+<li class="list-group-item">
+  <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+  <ul class="list-group" id="social">
+    <li class="list-group-item"><a href="https://github.com/Abdur-RahmaanJ"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+    <li class="list-group-item"><a href="https://linkedin.com/in/appinv"><i class="fa fa-linkedin-square fa-lg"></i> linkedIn</a></li>
+    <li class="list-group-item"><a href="https://twitter.com/osdotsystem"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+  </ul>
+</li>
+<!-- End Sidebar/Social -->
+
+<!-- Sidebar/Links -->
+<li class="list-group-item">
+  <h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+  <ul class="list-group" id="links">
+    <li class="list-group-item">
+      <a href="http://getpelican.com/" target="_blank">Pelican</a>
+    </li>
+    <li class="list-group-item">
+      <a href="http://python.org/" target="_blank">Python.org</a>
+    </li>
+    <li class="list-group-item">
+      <a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a>
+    </li>
+  </ul>
+</li>
+<!-- End Sidebar/Links -->
+  </ul>
+</section>
+<!-- End Sidebar -->            </aside>
+        </div>
+    </div>
+</div>
+<!-- End Content Container -->
+
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2020 Abdur-Rahmaan Janhangeer
+            &middot; Powered by Python's Pelican         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="/theme/js/respond.min.js"></script>
+
+
+
+
+</body>
+</html>

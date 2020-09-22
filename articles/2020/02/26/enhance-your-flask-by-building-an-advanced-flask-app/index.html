@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Enhance Your Flask by Exploring An Advanced Flask App - Refining the Azimuth</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="/articles/2020/02/26/enhance-your-flask-by-building-an-advanced-flask-app/">
+
+        <meta name="author" content="Abdur-Rahmaan Janhangeer" />
+        <meta name="keywords" content="python,flask,shopyo" />
+        <meta name="description" content="Shopyo is an Open Source Flask-based, Python-powered inventory solution and upcoming point of sales. It&#39;s aim is to help small business owners get a nice Python-based product with essential amenities for their businesses. An empty Shopyo project at the very least makes a great Flask base. The Tech Stack A …" />
+
+        <meta property="og:site_name" content="Refining the Azimuth" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Enhance Your Flask by Exploring An Advanced Flask App"/>
+        <meta property="og:url" content="/articles/2020/02/26/enhance-your-flask-by-building-an-advanced-flask-app/"/>
+        <meta property="og:description" content="Shopyo is an Open Source Flask-based, Python-powered inventory solution and upcoming point of sales. It&#39;s aim is to help small business owners get a nice Python-based product with essential amenities for their businesses. An empty Shopyo project at the very least makes a great Flask base. The Tech Stack A …"/>
+        <meta property="article:published_time" content="2020-02-26" />
+            <meta property="article:section" content="blogging" />
+            <meta property="article:tag" content="python" />
+            <meta property="article:tag" content="flask" />
+            <meta property="article:tag" content="shopyo" />
+            <meta property="article:author" content="Abdur-Rahmaan Janhangeer" />
+
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="/theme/css/bootstrap.superhero.min.css" type="text/css"/>
+    <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments/monokai.css" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
+        <link href="/theme/css/custom.css" rel="stylesheet">
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">
+Refining the Azimuth            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="/pages/about-me/">
+                             About Me
+                          </a></li>
+                         <li><a href="/pages/logofolio/">
+                             Logofolio
+                          </a></li>
+                        <li class="active">
+                            <a href="/category/blogging">Blogging</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<!-- Banner -->
+<!-- End Banner -->
+
+<!-- Content Container -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="/articles/2020/02/26/enhance-your-flask-by-building-an-advanced-flask-app/"
+                       rel="bookmark"
+                       title="Permalink to Enhance Your Flask by Exploring An Advanced Flask App">
+                        Enhance Your Flask by Exploring An Advanced Flask App
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2020-02-26T09:00:00+04:00"> Wed 26 February 2020</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="/tag/python">python</a>
+        /
+	<a href="/tag/flask">flask</a>
+        /
+	<a href="/tag/shopyo">shopyo</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p><img alt="" src="https://images.unsplash.com/photo-1531083894382-04a4f09c998f?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=750&amp;q=80"></p>
+<p><a href="https://github.com/Abdur-rahmaanJ/shopyo">Shopyo</a> is an Open Source Flask-based, Python-powered inventory solution and upcoming point of sales. It's aim is to help small business owners get a nice Python-based product with essential amenities for their businesses. </p>
+<p>An empty Shopyo project at the very least makes a great Flask base.</p>
+<h3>The Tech Stack</h3>
+<p><img alt="" src="https://images.unsplash.com/photo-1533630160910-65f5a1718c65?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></p>
+<p>A peek at Shopyo's requirements.txt gives</p>
+<div class="highlight"><pre><span></span><span class="err">flask</span>
+<span class="err">flask_sqlalchemy</span>
+<span class="err">marshmallow_sqlalchemy</span>
+<span class="err">flask_marshmallow</span>
+<span class="err">flask_migrate</span>
+<span class="err">flask_script</span>
+<span class="err">flask_login</span>
+<span class="err">Flask-WTF</span>
+<span class="err">requests</span>
+</pre></div>
+
+
+<ul>
+<li>flask_sqlalchemy</li>
+</ul>
+<p>flask_sqlalchemy is a wrapper around SQLAlchemy, a popular Python ORM. An ORM allows you to define your SQL tables without the need to write SQL codes. You just define models and the table is created for you. A typical model looks like this:</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Settings</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s1">&#39;settings&#39;</span>
+    <span class="n">setting</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+</pre></div>
+
+
+<ul>
+<li>flask_migrate</li>
+</ul>
+<p>flask_migrate is used to migrate your models. If you change your models by adding  a new field, the change is not reflected in your database. That's why you need to apply migrations. It is a wrapper around Alembic, a popular migration package.</p>
+<ul>
+<li>flask_marshmallow</li>
+<li>marshmallow_sqlalchemy</li>
+</ul>
+<p>Marshmallow is a project that allows you to create REST Apis. flask_marshmallow allows the easy integration of marshmallow with Flask and marshmallow_sqlalchemy is a required package that goes along.</p>
+<ul>
+<li>flask_script</li>
+</ul>
+<p>Though deprecated by Flask's official command line utitlity, flask_script allows you to create scripts to manage your Flask app easily.</p>
+<ul>
+<li>flask_login</li>
+</ul>
+<p>Flask login allows you to add authentication to your app.</p>
+<ul>
+<li>Flask-WTF</li>
+</ul>
+<p>A package that allows you to create forms. We use it to prevent CSRF (pronounced sea surf) attacks. It basically ensures that you don't tamper with a webpage then try to send it to someone else expecting it to work</p>
+<ul>
+<li>requests</li>
+</ul>
+<p>A package to make web requests and pull in urls easily. You can view a tutorial about it <a href="https://dmerej.info/blog/post/requests-what-you-need-to-build-useful-apps/">here</a></p>
+<h3>Terms Explained</h3>
+<p><img alt="" src="https://images.unsplash.com/photo-1507668077129-56e32842fceb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=334&amp;q=80"></p>
+<h4>model</h4>
+<p>A model defines your table</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Settings</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s1">&#39;settings&#39;</span>
+    <span class="n">setting</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+</pre></div>
+
+
+<p>creates a table named settings with fields named settings and value</p>
+<h4>template</h4>
+<p>A template is an html file with spaces left for values. <code>{%</code> and <code>{{</code> have special meaning. <code>{{1 + 1}}</code> will display 2 when rendered. Similarly <code>{{x + 1}}</code> will evaluate the expression before rendering.</p>
+<div class="highlight"><pre><span></span>{% extends &quot;base/main_base.html&quot; %}
+
+{% set active_page =&#39;settings&#39; %}
+
+{% block pagehead %}
+<span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Settings<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+  <span class="p">.</span><span class="nc">hidden</span><span class="p">{</span>
+    <span class="k">display</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="p">.</span><span class="nc">show</span><span class="p">{</span>
+    <span class="k">display</span><span class="p">:</span> <span class="kc">inline-block</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+{% endblock %}
+
+{% block content %}
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>
+<span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="p">});</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">table</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;table&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">thead</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">th</span> <span class="na">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>Settings<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">th</span> <span class="na">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>Value <span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">th</span> <span class="na">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">thead</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">tbody</span><span class="p">&gt;</span>
+{% for setting in settings %}
+    <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{setting.setting}}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{setting.value}} <span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/settings/edit/{{setting.setting}}&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-info&quot;</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;button&quot;</span><span class="p">&gt;&lt;</span><span class="nt">i</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;fas fa-pencil-alt&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">i</span><span class="p">&gt;&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+{%endfor%}
+  <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+
+{% endblock %}
+</pre></div>
+
+
+<p>let's take this snippet</p>
+<div class="highlight"><pre><span></span>{% extends &quot;base/main_base.html&quot; %}
+</pre></div>
+
+
+<p>Tells that we are inheriting from <a href="https://github.com/Abdur-rahmaanJ/shopyo/blob/master/shopyo/templates/base/main_base.html">base.html</a></p>
+<p>This eases our life by not copying whole <code>&lt;link&gt;</code> or <code>&lt;script&gt;</code> codes for example or not recopying the header/footer</p>
+<div class="highlight"><pre><span></span>{% block pagehead %}
+...
+{% endblock %}
+
+
+{% block content %}
+...
+{% endblock %}
+</pre></div>
+
+
+<p>allows us to define our head and body respectively.</p>
+<h3>Views and blueprint</h3>
+<p><img alt="" src="https://images.unsplash.com/photo-1565886593760-8e80f074d1f7?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=739&amp;q=80"></p>
+<p>A view file has lots of routes and what happens when such a route is found. This is the settings view file for example</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Blueprint</span><span class="p">,</span> <span class="n">render_template</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">redirect</span><span class="p">,</span> <span class="n">url_for</span><span class="p">,</span> <span class="n">jsonify</span>
+    <span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">addon</span> <span class="kn">import</span> <span class="n">db</span>
+<span class="kn">from</span> <span class="nn">views.settings.models</span> <span class="kn">import</span> <span class="n">Settings</span>
+<span class="kn">from</span> <span class="nn">flask_marshmallow</span> <span class="kn">import</span> <span class="n">Marshmallow</span>
+<span class="kn">from</span> <span class="nn">flask_login</span> <span class="kn">import</span> <span class="n">login_required</span><span class="p">,</span> <span class="n">current_user</span>
+
+<span class="kn">from</span> <span class="nn">project_api</span> <span class="kn">import</span> <span class="n">base_context</span>
+
+
+<span class="n">settings_blueprint</span> <span class="o">=</span> <span class="n">Blueprint</span><span class="p">(</span><span class="s1">&#39;settings&#39;</span><span class="p">,</span> <span class="vm">__name__</span><span class="p">,</span> <span class="n">url_prefix</span><span class="o">=</span><span class="s1">&#39;/settings&#39;</span><span class="p">)</span>
+
+<span class="nd">@settings_blueprint</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">settings_main</span><span class="p">():</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="n">base_context</span><span class="p">()</span>
+
+    <span class="n">settings</span> <span class="o">=</span>  <span class="n">Settings</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+
+    <span class="n">context</span><span class="p">[</span><span class="s1">&#39;settings&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;settings/index.html&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">context</span><span class="p">)</span>
+
+<span class="o">...</span>
+</pre></div>
+
+
+<p>Here is a breaking down:</p>
+<div class="highlight"><pre><span></span>from flask import (
+    Blueprint, render_template, request, redirect, jsonify
+    )
+</pre></div>
+
+
+<ul>
+<li>Blueprint</li>
+</ul>
+<p>Allows us to create blueprints. More on that further on</p>
+<ul>
+<li>render_template</li>
+</ul>
+<p>return render_template(filename) returns the rendered html</p>
+<ul>
+<li>request </li>
+</ul>
+<p>refers to the incoming web request by which we can check for GET or POST methods</p>
+<ul>
+<li>redirect</li>
+</ul>
+<p>redirects to another url</p>
+<ul>
+<li>jsonify</li>
+</ul>
+<p>returns a string or dictionary as JSON response</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">addon</span> <span class="kn">import</span> <span class="n">db</span>
+</pre></div>
+
+
+<p><a href="https://github.com/Abdur-rahmaanJ/shopyo/blob/master/shopyo/addon.py">addon</a> contains the following:</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask_sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
+<span class="kn">from</span> <span class="nn">flask_marshmallow</span> <span class="kn">import</span> <span class="n">Marshmallow</span>
+<span class="kn">from</span> <span class="nn">flask_login</span> <span class="kn">import</span> <span class="n">LoginManager</span>
+
+<span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">()</span>
+<span class="n">ma</span> <span class="o">=</span> <span class="n">Marshmallow</span><span class="p">()</span>
+<span class="n">login_manager</span> <span class="o">=</span> <span class="n">LoginManager</span><span class="p">()</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">views.settings.models</span> <span class="kn">import</span> <span class="n">Settings</span>
+</pre></div>
+
+
+<p>Tells us to go to views folder -&gt; settings folder -&gt; models file</p>
+<div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="kn">from</span> <span class="nn">project_api</span> <span class="kn">import</span> <span class="n">base_context</span>
+</pre></div>
+
+
+<p><a href="https://github.com/Abdur-rahmaanJ/shopyo/blob/master/shopyo/project_api.py">project_api.py</a> contains base_context which returns just a dictionary</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">base_context</span><span class="p">():</span>
+    <span class="n">base_context</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;APP_NAME&#39;</span><span class="p">:</span> <span class="n">get_setting</span><span class="p">(</span><span class="s1">&#39;APP_NAME&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;SECTION_NAME&#39;</span><span class="p">:</span> <span class="n">get_setting</span><span class="p">(</span><span class="s1">&#39;SECTION_NAME&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;SECTION_ITEMS&#39;</span><span class="p">:</span> <span class="n">get_setting</span><span class="p">(</span><span class="s1">&#39;SECTION_ITEMS&#39;</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">base_context</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+
+
+<p>We copy so as not to let additions be global. Rener templates accepts the variables to be rendered as keywords. But those 3 variables are rendered everywhere so, instead of copy paste each time, we just add to this dictionary.</p>
+<div class="highlight"><pre><span></span><span class="n">settings_blueprint</span> <span class="o">=</span> <span class="n">Blueprint</span><span class="p">(</span><span class="s1">&#39;settings&#39;</span><span class="p">,</span> <span class="vm">__name__</span><span class="p">,</span> <span class="n">url_prefix</span><span class="o">=</span><span class="s1">&#39;/settings&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>This tells that whatever urls starts with /settings will be dealt with in this file</p>
+<div class="highlight"><pre><span></span><span class="nd">@settings_blueprint</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/abc&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>is actually for the url <code>/settings/abc</code></p>
+<div class="highlight"><pre><span></span><span class="nd">@settings_blueprint</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">settings_main</span><span class="p">():</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="n">base_context</span><span class="p">()</span>
+
+    <span class="n">settings</span> <span class="o">=</span>  <span class="n">Settings</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+
+    <span class="n">context</span><span class="p">[</span><span class="s1">&#39;settings&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;settings/index.html&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">context</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Context is just a dictionary</p>
+<div class="highlight"><pre><span></span><span class="n">context</span><span class="p">[</span><span class="s1">&#39;settings&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings</span>
+</pre></div>
+
+
+<p>passes the settings variable which the for loop in the template makes use of</p>
+<div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="n">setting</span> <span class="ow">in</span> <span class="n">settings</span> <span class="o">%</span><span class="p">}</span>
+    <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="p">{{</span><span class="n">setting</span><span class="o">.</span><span class="n">setting</span><span class="p">}}</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="p">{{</span><span class="n">setting</span><span class="o">.</span><span class="n">value</span><span class="p">}}</span> <span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;/settings/edit/{{setting.setting}}&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;btn btn-info&quot;</span> <span class="n">role</span><span class="o">=</span><span class="s2">&quot;button&quot;</span><span class="o">&gt;&lt;</span><span class="n">i</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;fas fa-pencil-alt&quot;</span><span class="o">&gt;&lt;/</span><span class="n">i</span><span class="o">&gt;&lt;/</span><span class="n">a</span><span class="o">&gt;&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+<span class="p">{</span><span class="o">%</span><span class="n">endfor</span><span class="o">%</span><span class="p">}</span>
+</pre></div>
+
+
+<p>By the way,</p>
+<div class="highlight"><pre><span></span><span class="n">context</span><span class="p">[</span><span class="s1">&#39;settings&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings</span>
+<span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;settings/index.html&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">context</span><span class="p">)</span>
+</pre></div>
+
+
+<p>is the same as </p>
+<div class="highlight"><pre><span></span><span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;settings/index.html&#39;</span><span class="p">,</span> 
+    <span class="n">settings</span><span class="o">=</span><span class="n">settings</span><span class="p">,</span>
+    <span class="n">APP_NAME</span><span class="o">=</span><span class="n">get_setting</span><span class="p">(</span><span class="s1">&#39;APP_NAME&#39;</span><span class="p">),</span>
+    <span class="n">SECTION_NAME</span><span class="o">=</span><span class="n">get_setting</span><span class="p">(</span><span class="s1">&#39;SECTION_NAME&#39;</span><span class="p">),</span>
+    <span class="n">SECTION_ITEMS</span><span class="o">=</span><span class="n">get_setting</span><span class="p">(</span><span class="s1">&#39;SECTION_ITEMS&#39;</span><span class="p">))</span>
+</pre></div>
+
+
+<h3>Register blueprints</h3>
+<p><img alt="" src="https://images.unsplash.com/photo-1542621334-a254cf47733d?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=750&amp;q=80"></p>
+<p>in <a href="https://github.com/Abdur-rahmaanJ/shopyo/blob/master/shopyo/app.py">app.py</a> you will see </p>
+<div class="highlight"><pre><span></span>    <span class="kn">from</span> <span class="nn">views.settings.settings_modif</span> <span class="kn">import</span> <span class="n">settings_blueprint</span>
+
+    <span class="n">app</span><span class="o">.</span><span class="n">register_blueprint</span><span class="p">(</span><span class="n">settings_blueprint</span><span class="p">)</span>
+</pre></div>
+
+
+<p>which adds the views of the settings folder to the app.</p>
+<h3>Configuration management</h3>
+<p><img alt="" src="https://images.unsplash.com/photo-1484191914255-a429e6f819b4?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=750&amp;q=80"></p>
+<p>in <a href="https://github.com/Abdur-rahmaanJ/shopyo/blob/master/shopyo/config.py">config.py</a> we see</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Parent configuration class.&quot;&quot;&quot;</span>
+    <span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">SQLALCHEMY_DATABASE_URI</span> <span class="o">=</span> <span class="s1">&#39;sqlite:///test.db&#39;</span>
+    <span class="n">SQLALCHEMY_TRACK_MODIFICATIONS</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s1">&#39;qow32ijjdkc756osk5dmck&#39;</span>  <span class="c1">### Need a generator</span>
+    <span class="n">APP_NAME</span> <span class="o">=</span> <span class="s1">&#39;Demo&#39;</span>
+    <span class="n">SECTION_NAME</span> <span class="o">=</span> <span class="s1">&#39;Manufacturer&#39;</span>
+    <span class="n">SECTION_ITEMS</span> <span class="o">=</span> <span class="s1">&#39;Products&#39;</span>
+    <span class="n">HOMEPAGE_URL</span> <span class="o">=</span> <span class="s1">&#39;/manufac/&#39;</span>
+
+
+<span class="k">class</span> <span class="nc">DevelopmentConfig</span><span class="p">(</span><span class="n">Config</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Configurations for development&quot;&quot;&quot;</span>
+    <span class="n">ENV</span> <span class="o">=</span> <span class="s1">&#39;development&#39;</span>
+    <span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">True</span>
+
+
+<span class="n">app_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;development&#39;</span><span class="p">:</span> <span class="n">DevelopmentConfig</span><span class="p">,</span>
+    <span class="s1">&#39;production&#39;</span><span class="p">:</span> <span class="n">Config</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>then in <a href="https://github.com/Abdur-rahmaanJ/shopyo/blob/master/shopyo/app.py">app.py</a></p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_app</span><span class="p">(</span><span class="n">config_name</span><span class="p">):</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_object</span><span class="p">(</span><span class="n">app_config</span><span class="p">[</span><span class="n">config_name</span><span class="p">])</span>
+    <span class="o">...</span>
+</pre></div>
+
+
+<p>then further down</p>
+<div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">create_app</span><span class="p">(</span><span class="s1">&#39;development&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>so, if we put in 'production' it will load the production configs.</p>
+<p>As info, creating apps this way is called the App Factory pattern</p>
+<h3>manage.py</h3>
+<p><img alt="" src="https://images.unsplash.com/photo-1509541206217-cde45c41aa6d?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=751&amp;q=80"></p>
+<p><a href="https://github.com/Abdur-rahmaanJ/shopyo/blob/master/shopyo/manage.py">manage.py</a></p>
+<div class="highlight"><pre><span></span><span class="n">migrate</span> <span class="o">=</span> <span class="n">Migrate</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">db</span><span class="p">,</span> <span class="n">compare_type</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">manager</span> <span class="o">=</span> <span class="n">Manager</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+<span class="n">manager</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="s1">&#39;db&#39;</span><span class="p">,</span> <span class="n">MigrateCommand</span><span class="p">)</span>
+</pre></div>
+
+
+<p>allows us to pass in normal Alembic migration commands</p>
+<p>normal alembic commands run like:</p>
+<div class="highlight"><pre><span></span><span class="err">alembic db init</span>
+<span class="err">alembic db migrate</span>
+<span class="err">alembic db upgrade</span>
+</pre></div>
+
+
+<p>but using the above code, we automatically get</p>
+<div class="highlight"><pre><span></span><span class="err">python manage.py db init</span>
+<span class="err">python manage.py db migrate</span>
+<span class="err">python manage.py db upgrate</span>
+</pre></div>
+
+
+<p>similarly this:</p>
+<div class="highlight"><pre><span></span><span class="nd">@manager</span><span class="o">.</span><span class="n">command</span>
+<span class="k">def</span> <span class="nf">runserver</span><span class="p">():</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+
+
+<p>allows us to have</p>
+<div class="highlight"><pre><span></span><span class="err">python manage.py runserver</span>
+</pre></div>
+
+
+<h3>Conclusion</h3>
+<p>This was written as part of the Shopyo docs but makes a nice Flask post by the way!</p>
+<p>If you did not understand something, please ping me at</p>
+<div class="highlight"><pre><span></span><span class="err">arj.python at gmail dot com</span>
+</pre></div>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<!-- Sidebar -->
+<section class="well well-sm">
+  <ul class="list-group list-group-flush">
+
+<!-- Sidebar/Social -->
+<li class="list-group-item">
+  <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+  <ul class="list-group" id="social">
+    <li class="list-group-item"><a href="https://github.com/Abdur-RahmaanJ"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+    <li class="list-group-item"><a href="https://linkedin.com/in/appinv"><i class="fa fa-linkedin-square fa-lg"></i> linkedIn</a></li>
+    <li class="list-group-item"><a href="https://twitter.com/osdotsystem"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+  </ul>
+</li>
+<!-- End Sidebar/Social -->
+
+<!-- Sidebar/Links -->
+<li class="list-group-item">
+  <h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+  <ul class="list-group" id="links">
+    <li class="list-group-item">
+      <a href="http://getpelican.com/" target="_blank">Pelican</a>
+    </li>
+    <li class="list-group-item">
+      <a href="http://python.org/" target="_blank">Python.org</a>
+    </li>
+    <li class="list-group-item">
+      <a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a>
+    </li>
+  </ul>
+</li>
+<!-- End Sidebar/Links -->
+  </ul>
+</section>
+<!-- End Sidebar -->            </aside>
+        </div>
+    </div>
+</div>
+<!-- End Content Container -->
+
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2020 Abdur-Rahmaan Janhangeer
+            &middot; Powered by Python's Pelican         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="/theme/js/respond.min.js"></script>
+
+
+
+
+</body>
+</html>
